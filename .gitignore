@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+.idea/
+
+# Environment files
+*.env
+
+# Packages and archives
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Custom files
+etl/misc.py
+venv/
+postgresql/

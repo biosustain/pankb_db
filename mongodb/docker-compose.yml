@@ -1,0 +1,20 @@
+networks:
+  pankb-net:
+    name: pankb-net
+    external: true
+
+services:
+  mongodb:
+    container_name: pankb-mongodb
+    image: mongo:6.0-rc
+    restart: always
+    command: [ '--auth', '--wiredTigerCacheSizeGB=1' ]
+    volumes:
+      - ./docker-entrypoint-initdb.d/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
+      - ../../docker_volumes/mongodb:/data/db
+    env_file:
+      - .env
+    ports:
+      - "27017:27017"
+    networks:
+      - pankb-net
