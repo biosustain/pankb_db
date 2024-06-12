@@ -66,7 +66,7 @@ logger.info("Documents inserted: %s" % len(list(collection.find())))
 # Manage the indexes AFTER (!!!) the insertion: ----
 logger.info("Creating the indexes on the collection...")
 collection.create_index('pangenome_analysis')
-collection.create_index([('gene', 1), ('protein', 1)])
+collection.create_index([('gene', 1), ('protein', 1), ('pfams', 1)])
 logger.info("The indexes have been successfully created.")
 logger.info("Execution time: %.2f minutes" % ((time.time() - script_start_time)/60))
 
