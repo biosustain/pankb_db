@@ -1,4 +1,4 @@
-# ETL scripts for the PanKB Website Databases & Self-deployed MongoDB
+# The PanKB website DBs: ETL & Self-deployed MongoDB instance 
 
 The repo contains :
 - ETL scripts used to populate the PanKB website DEV and PROD databases;
@@ -15,16 +15,17 @@ cd pankb_web
 ```
 Clone the PanKB git repo into the subdirectory /pankb_db and change to it:
 ```
-git clone --branch develop https://github.com/biosustain/pankb_db.git pankb_db
+git clone --branch main https://github.com/biosustain/pankb_db.git pankb_db
 cd pankb_db
 ```
 
 ## 1. ETL scripts
 
 The ETL (Extract-Transform-Load) scripts:
-1) extracts information about pangenomes from the Microsoft Azure Blob Storage *.json files. The storage serves as the data lake;
-2) transforms it into the Django- and MongoDB-compatible model;
-3) loads the transformed data into a MongoDB database instance.
+1) extract information about pangenomes from the Microsoft Azure Blob Storage *.json files. The storage serves as the data lake;
+2) transform it into the Django- and MongoDB-compatible model;
+3) load the transformed data into a MongoDB database instance;
+4) (optionally) upload the logs needed for statistics and quality control to the Azure Blob Storage after the pipeline scripts are executed.
 
 Initially, the database tables are created by Django web framework, which the PanKB website is built on. It is achieved by setting the parameter `managed = True` in the `models.py` files.
 
@@ -38,24 +39,35 @@ The python packages versions to be installed can be found in the `requirements.t
 ```
 pip install -r requirements.txt
 ```
+or 
+```
+pip3 install -r requirements.txt
+```
 
 ### 1.2. Execute the ETL Scripts
 Before executing any scripts, create the `.env` file under the subfolder `/etl` with the following content in case of populating a self-deployed MongoDB instance: 
 ```
 ## Do not put this file under version control!
 
-MONGODB_NAME = 'pankb'                                    # the db name
-MONGO_INITDB_ROOT_USERNAME = 'allDbAdmin'                 # the db admin name                
-MONGO_INITDB_ROOT_PASSWORD = '<any password you choose>'  # the db admin pass
+# The MongoDB database name
+MONGODB_NAME = 'pankb' 
+
+# The MongoDB root username
+MONGO_INITDB_ROOT_USERNAME = 'allDbAdmin'    
+
+# The MongoDB root password                          
+MONGO_INITDB_ROOT_PASSWORD = '<any password you choose>'  
 
 ## Azure Blob Storage Connection String
-BLOB_STORAGE_CONN_STRING = '<copy the Azure Blob Storage connection string from the Azure web portal>'
+BLOB_STORAGE_CONN_STRING = '<copy the Azure Blob Storage connection string from the Azure web portal>'                                 
 ```
 or in case of populating a cloud-based Azure CosmosDB for MongoDB instance:
 ```
 ## Do not put this file under version control!
 
-MONGODB_NAME = 'pankb'                                    # the db name
+# The MongoDB database name
+MONGODB_NAME = 'pankb'          
+                          
 ## MongoDB-PROD (Azure CosmosDB for MongoDB) Connection String
 MONGODB_CONN_STRING = '<copy the Azure CosmosDB for MongoDB connection string from the Azure web portal>'
 
@@ -70,16 +82,23 @@ Then, edit the included `etl/config.py` file setting the following parameters:
 
 Finally, the ETL scripts must be executed in the following order:
 1. `organisms.py`
-2. `gene_annotations.py`
+2. `gene_annotations.py` 
 3. `gene_info.py`
 4. `genome_info.py`
 5. `pathway_info.py`
+
 ```
 python3 <insert the respective script name here>
 ```
 The scripts were not joined into one pipeline, because in practice it is more convenient to run them one by one for the sake of:
 - quality control after each step;
 - monitoring that the storage and RAM are not running out on the DEV server and CPUs both on the DEV and PROD servers are not overloaded (via "Metrics" section on the Azure Portal or with the help of a Remote IDE, e.g., PyCharm).
+
+A good practice is to clean up unneccessary docker images and containers and restart the docker daemon after with the following commands:
+```
+docker system prune
+sudo systemctl restart docker
+```
 
 ## 2. Self-deployed MongoDB
 
@@ -98,11 +117,18 @@ Create a file with the name ".env" under the /projects/pankb_web/pankb_db/mongod
 ```
 ## Do not put this file under version control!
 
-## MongoDB: Docker Compose Env Variables
-MONGO_INITDB_ROOT_USERNAME = 'allDbAdmin'                   # also the remote CosmosDB admin username: DbAdmin
-MONGO_INITDB_ROOT_PASSWORD = '<any password you choose>'    # also the remote CosmosDB admin pass
+# The MongoDB root username
+MONGO_INITDB_ROOT_USERNAME = 'allDbAdmin'    
+
+# The MongoDB root password                
+MONGO_INITDB_ROOT_PASSWORD = '<any password you choose>'   
+
+# The MongoDB database admin password
 MONGODB_USERNAME = 'pankbDbOwner'
+
+# The MongoDB database admin password 
 MONGODB_PASSWORD = '<any password you choose>'
+
 MONGODB_AUTH_SOURCE = 'pankb'
 ```
 Change to the appropriate folder and build the containers with Docker Compose:
