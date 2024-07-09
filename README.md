@@ -4,6 +4,10 @@ The repo contains :
 - ETL scripts used to populate the PanKB website DEV and PROD databases;
 - scripts used to set up a dockerized self-deployed standalone MongoDB instance for the development purposes.
 
+## Authors
+
+Liubov Pashkova, liupa@dtu.dk
+
 ## Set up the common git repository
 Create the necessary directories if they do not exist:
 ```
