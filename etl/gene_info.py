@@ -15,8 +15,9 @@ script_start_time = time.time()
 # Obtain the db collection object: ----
 collection = db["pankb_gene_info"]
 
-# Drop the collection if it exists: ----
-collection.drop()
+if config.drop_collection:
+    # Drop the collection if it exists: ----
+    collection.drop()
 
 # Set up the logging: ----
 logger = logging.getLogger("gene_info")
@@ -82,7 +83,7 @@ def worker(args):
                 d['nucleotide_seq'] = d.pop('Nucleotide_Seq')
                 d['aminoacid_seq'] = d.pop('Amino_Acid_Seq')
             insertion += gene_info
-            if len(processed_blobs) == total_blobs:   # insert when all the blobs are processed for the current species: ----
+            if len(processed_blobs) == total_blobs or len(processed_blobs) == config.gene_batch_size:   # insert when all the blobs are processed for the current species: ----
                 collection.insert_many(insertion, ordered=False)
                 # Clean the global variables for the sake of the next species to be processsed: ----
                 insertion = []

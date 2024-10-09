@@ -15,8 +15,9 @@ script_start_time = time.time()
 # Obtain the db collection object: ----
 collection = db["pankb_gene_annotations"]
 
-# Drop the collection if it exists: ----
-collection.drop()
+if config.drop_collection:
+    # Drop the collection if it exists: ----
+    collection.drop()
 
 # Set up the logging: ----
 logger = logging.getLogger("gene_annotations")
@@ -24,24 +25,26 @@ logger = logging.getLogger("gene_annotations")
 logfile_name = config.logs_folder + config.db_server + "/gene_annotations__" + start_strftime + ".log"
 logging.basicConfig(filename=logfile_name, level=logging.INFO)
 
-# Obtain the list of all species existing in the DB
-pangenome_analyses_list = []
-for data in db.pankb_organisms.find():
-    pangenome_analyses_list.append(data["pangenome_analysis"])
+# # Obtain the list of all species existing in the DB
+# pangenome_analyses_list = []
+# for data in db.pankb_organisms.find():
+#     pangenome_analyses_list.append(data["pangenome_analysis"])
 
 # Iterate over all the species in the DB and create the list of rows to insert into the MongoDB: ----
 requesting = []
 logger.info("--- DB Insertion ---")
-for pangenome_analysis in pangenome_analyses_list:
+for item in pangenome_analyses_species_dict_list:
+    pangenome_analysis = item["pangenome_analysis"]
+    species = item["species"]
     # Retrieve the respective *.json file content from the Blob storage: ----
     jsonObj = requests.get('https://pankb.blob.core.windows.net/data/PanKB/web_data/species/' + pangenome_analysis + '/All.json').json()
     # Transform the content into a list: ----
     gene_annotations_list = json.loads(json.dumps(jsonObj))
 
-    # Retrieve species name from the organisms table
-    # (should already exist and be populated up to the point): ----
-    species_name_res = db.pankb_organisms.find({"pangenome_analysis": pangenome_analysis}, {"species": 1, "_id": 0})
-    species = list(species_name_res)[0]["species"]
+    # # Retrieve species name from the organisms table
+    # # (should already exist and be populated up to the point): ----
+    # species_name_res = db.pankb_organisms.find({"pangenome_analysis": pangenome_analysis}, {"species": 1, "_id": 0})
+    # species = list(species_name_res)[0]["species"]
 
     # Iterate over all gene annotations for the given species: ----
     for gene_annotation in gene_annotations_list:

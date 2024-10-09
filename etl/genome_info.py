@@ -15,8 +15,9 @@ script_start_time = time.time()
 # Obtain the db collection object: ----
 collection = db["pankb_genome_info"]
 
-# Drop the collection if it exists: ----
-collection.drop()
+if config.drop_collection:
+    # Drop the collection if it exists: ----
+    collection.drop()
 
 # Set up the logging: ----
 logger = logging.getLogger("genome_info")

@@ -15,8 +15,9 @@ script_start_time = time.time()
 # Obtain the db collection object: ----
 collection = db["pankb_organisms"]
 
-# Drop the collection if it exists: ----
-collection.drop()
+if config.drop_collection:
+    # Drop the collection if it exists: ----
+    collection.drop()
 
 # Set up the logging: ----
 logger = logging.getLogger("organisms")
@@ -24,19 +25,23 @@ logger = logging.getLogger("organisms")
 logfile_name = config.logs_folder + config.db_server + "/organisms__" + start_strftime + ".log"
 logging.basicConfig(filename=logfile_name, level=logging.INFO)
 
-# Retrieve the respective *.json file content from the Blob storage: ----
-jsonObj = requests.get('https://pankb.blob.core.windows.net/data/PanKB/web_data/species_list.json').json()
-organisms_dict = json.loads(json.dumps(jsonObj))
-
-# Create a list of rows to insert to the MongoDB: ----
 requesting = []
-for c1, c2, c3, c4, c5, c6 in zip(organisms_dict["Family"], organisms_dict["Species"], organisms_dict["Openness"], organisms_dict["Gene_class"], organisms_dict["N_of_genome"], organisms_dict["Pangenome_analyses"]):
-    data = {"family": c1,
-            "species": c2,
-            "openness": c3,
-            "gene_class_distribution": c4,
-            "genomes_num": c5,
-            "pangenome_analysis": c6}
+
+for item in pangenome_analyses_species_dict_list:
+    pangenome_analysis = item["pangenome_analysis"]
+    species = item["species"]
+
+    # Retrieve the respective *.json file content from the Blob storage: ----
+    jsonObj = requests.get(f'https://pankb.blob.core.windows.net/data/PanKB/web_data/species/{pangenome_analysis}/info_panel.json').json()
+    organism_dict = json.loads(json.dumps(jsonObj))
+
+    # Create a list of rows to insert to the MongoDB: ----
+    data = {"family": organism_dict["Family"],
+            "species": organism_dict["Species"],
+            "openness": organism_dict["Openness"],
+            "gene_class_distribution": organism_dict["Gene_class"],
+            "genomes_num": organism_dict["Number_of_genome"],
+            "pangenome_analysis": pangenome_analysis}
     requesting.append(InsertOne(data))
 
 # Insert rows into the MongoDB and print some stats: ----
