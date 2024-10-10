@@ -97,6 +97,8 @@ def create_highcharts_entry(name, entry_id, value, parent_id=None):
     return d
 
 for cat1, v1 in source_tree.items():
+    if cat1 == "Missing":
+        continue
     id1 = cat1
     count1 = 0
     for cat2, v2 in v1.items():
@@ -111,9 +113,9 @@ for cat1, v1 in source_tree.items():
     highcharts_data.append(create_highcharts_entry(cat1, id1, count1))
 
 # Convert the hierarchical structure to JSON
-json_file_path = './treemap_data.json'
+json_file_path = out_path / 'treemap_data.json'
 with open(json_file_path, 'w') as f:
     json.dump(highcharts_data, f)
 
-with open("./cat_not_found.txt", "w") as f:
+with open(out_path / "cat_not_found.txt", "w") as f:
     f.write("\n".join(cat_not_found))

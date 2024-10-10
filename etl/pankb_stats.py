@@ -5,9 +5,6 @@ from global_func import *
 from datetime import datetime
 from pathlib import Path
 
-out_path = Path("./web_data/")
-out_path.mkdir(exist_ok=True)
-
 # Obtain the script execution start date and time: ----
 start_strftime = time.strftime("%Y-%m-%d_%H%M%S")
 script_start_time = time.time()
@@ -27,6 +24,7 @@ collection = db["pankb_stats"]
 pankb_dimensions = {"Mutations": 0, "Genes": 0, "Alleleomes": 0, "Genomes": 0, "Species pangenomes": 0}
 species_genome_gene = {}
 organism_genome_count = {}
+organism_gene_count = {}
 
 for item in pangenome_analyses_species_dict_list:
     pangenome_analysis = item["pangenome_analysis"]
@@ -53,6 +51,14 @@ for item in pangenome_analyses_species_dict_list:
     species_genome_gene[family][pangenome_analysis] = [n_genome, n_gene]
 
     organism_genome_count[family] = organism_genome_count.get(family, 0) + n_genome
+    organism_gene_count[family] = organism_gene_count.get(family, 0) + n_gene
+
+# Sort all dicts in the same way
+sorted_families = [k for k, v in reversed(sorted(organism_genome_count.items(), key=lambda item: item[1]))]
+
+organism_genome_count = {k: organism_genome_count[k] for k in sorted_families}
+organism_gene_count = {k: organism_gene_count[k] for k in sorted_families}
+species_genome_gene = {k: species_genome_gene[k] for k in sorted_families}
 
 with open(out_path / "pankb_dimensions_full_panalleleome.json", "w") as f:
     json.dump(pankb_dimensions, f)
@@ -60,12 +66,19 @@ with open(out_path / "species_genome_gene.json", "w") as f:
     json.dump(species_genome_gene, f)
 with open(out_path / "organism_genome_count.json", "w") as f:
     json.dump(organism_genome_count, f)
+with open(out_path / "organism_gene_count.json", "w") as f:
+    json.dump(organism_gene_count, f)
+
+with open(out_path / "treemap_data.json", "r") as f:
+    treemap_data = json.load(f)
 
 data = {
     "date": datetime.now(),
-    "pankb_dimensions": pankb_dimensions,
-    "species_genome_gene": species_genome_gene,
-    "organism_genome_count": organism_genome_count,
+    "pankb_dimensions": json.dumps(pankb_dimensions),
+    "species_genome_gene": json.dumps(species_genome_gene),
+    "organism_genome_count": json.dumps(organism_genome_count),
+    "organism_gene_count": json.dumps(organism_gene_count),
+    "treemap": json.dumps(treemap_data)
 }
 
 # Insert rows into the MongoDB and print some stats: ----

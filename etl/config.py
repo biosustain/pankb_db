@@ -10,7 +10,7 @@ db_type = 'self_deployed'
 db_server = 'dev'
 
 # Whether to drop the existing collection in the DB (True, False):
-drop_collection = False
+drop_collection = True
 # Upload or reupload data for ALL species (True, False): ----
 all_species = False
 
@@ -62,58 +62,58 @@ Vibrio_rotiferianus
 Vibrio_splendidus
 Vibrio_tasmaniensis_A
 Vibrio_vulnificus
-Vibrio_vulnificus_B"""
-# species = """Bacillus_licheniformis
-# Bacillus_paralicheniformis
-# Bacillus_subtilis
-# Bacillus_velezensis
-# Corynebacterium_accolens
-# Corynebacterium_amycolatum
-# Corynebacterium_amycolatum_A
-# Corynebacterium_diphtheriae
-# Corynebacterium_glutamicum
-# Corynebacterium_propinquum
-# Corynebacterium_pseudodiphtheriticum
-# Corynebacterium_pseudotuberculosis
-# Corynebacterium_striatum
-# Corynebacterium_ulcerans
-# Cupriavidus_necator
-# Escherichia_coli
-# Lacticaseibacillus_paracasei
-# Lacticaseibacillus_rhamnosus
-# Lactiplantibacillus_pentosus
-# Lactiplantibacillus_plantarum
-# Lactobacillus_acidophilus
-# Lactobacillus_crispatus
-# Lactobacillus_delbrueckii
-# Lactobacillus_gasseri
-# Lactobacillus_helveticus
-# Lactobacillus_iners
-# Lactobacillus_johnsonii
-# Lactobacillus_paragasseri
-# Latilactobacillus_sakei
-# Lentilactobacillus_parabuchneri
-# Leuconostoc_inhae
-# Leuconostoc_mesenteroides
-# Levilactobacillus_brevis
-# Ligilactobacillus_ruminis
-# Ligilactobacillus_salivarius
-# Limosilactobacillus_fermentum
-# Limosilactobacillus_reuteri
-# Oenococcus_oeni
-# Parageobacillus_thermoglucosidasius
-# Pediococcus_acidilactici
-# Pediococcus_pentosaceus
-# Pseudomonas_E_alloputida
-# Pseudomonas_E_fulva
-# Pseudomonas_E_monteilii
-# Pseudomonas_E_mosselii
-# Pseudomonas_E_putida
-# Streptomyces_albidoflavus
-# Streptomyces_bacillaris
-# Streptomyces_olivaceus
-# Weissella_cibaria
-# Weissella_confusa"""
+Vibrio_vulnificus_B
+Bacillus_licheniformis
+Bacillus_paralicheniformis
+Bacillus_subtilis
+Bacillus_velezensis
+Corynebacterium_accolens
+Corynebacterium_amycolatum
+Corynebacterium_amycolatum_A
+Corynebacterium_diphtheriae
+Corynebacterium_glutamicum
+Corynebacterium_propinquum
+Corynebacterium_pseudodiphtheriticum
+Corynebacterium_pseudotuberculosis
+Corynebacterium_striatum
+Corynebacterium_ulcerans
+Cupriavidus_necator
+Escherichia_coli
+Lacticaseibacillus_paracasei
+Lacticaseibacillus_rhamnosus
+Lactiplantibacillus_pentosus
+Lactiplantibacillus_plantarum
+Lactobacillus_acidophilus
+Lactobacillus_crispatus
+Lactobacillus_delbrueckii
+Lactobacillus_gasseri
+Lactobacillus_helveticus
+Lactobacillus_iners
+Lactobacillus_johnsonii
+Lactobacillus_paragasseri
+Latilactobacillus_sakei
+Lentilactobacillus_parabuchneri
+Leuconostoc_inhae
+Leuconostoc_mesenteroides
+Levilactobacillus_brevis
+Ligilactobacillus_ruminis
+Ligilactobacillus_salivarius
+Limosilactobacillus_fermentum
+Limosilactobacillus_reuteri
+Oenococcus_oeni
+Parageobacillus_thermoglucosidasius
+Pediococcus_acidilactici
+Pediococcus_pentosaceus
+Pseudomonas_E_alloputida
+Pseudomonas_E_fulva
+Pseudomonas_E_monteilii
+Pseudomonas_E_mosselii
+Pseudomonas_E_putida
+Streptomyces_albidoflavus
+Streptomyces_bacillaris
+Streptomyces_olivaceus
+Weissella_cibaria
+Weissella_confusa"""
 species_list = [{"pangenome_analysis": s.strip(), "species": s.replace('_', ' ').strip()} for s in species.split('\n')]
 
 # A local folder, where all the logs are to be stored: ----

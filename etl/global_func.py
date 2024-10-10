@@ -22,6 +22,8 @@ import pandas as pd
 from pathlib import Path
 import config
 
+out_path = Path("./web_data/")
+out_path.mkdir(exist_ok=True)
 
 # Load the .env file with the DB access credentials: ----
 load_dotenv(".env")
