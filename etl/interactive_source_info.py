@@ -44,7 +44,7 @@ def add_to_tree(tree, keys, value, treetype="int"):
     if len(keys) > 1:
         if not keys[0] in tree:
             tree[keys[0]] = {}
-        add_to_tree(tree[keys[0]], keys[1:], value)
+        add_to_tree(tree[keys[0]], keys[1:], value, treetype=treetype)
     else:
         if not keys[0] in tree:
             if treetype == "int":
@@ -121,10 +121,7 @@ def input_category_info(src, tree, ann, start_pos=None):
                 print(f" - {' > '.join(cur_pos)}")
         for i, k in enumerate(cur_keys):
             print(f"  - [{i + 1:2d}] {k}")
-        if len(cur_pos) > 0:
-            print(bcolors.OKBLUE + "/ [q]uit / [u]p / [s]kip / skip [r]est / [p]rint tree /" + bcolors.ENDC)
-        else:
-            print(bcolors.OKBLUE + "/ [q]uit / [s]kip / skip [r]est / [p]rint tree /" + bcolors.ENDC)
+        print(f"{bcolors.OKBLUE}/ [q]uit{' / [u]p' if len(cur_pos) > 0 else ''} / [n]ew branch / new [l]eaf / [s]kip / skip [r]est / [p]rint tree /{bcolors.ENDC}")
         if len(cur_keys) > 9: # expect multiple numbers, so require ENTER
             action = input("> ").strip().lower()
         else:
@@ -142,6 +139,21 @@ def input_category_info(src, tree, ann, start_pos=None):
             return 0, None
         elif action == 'p':
             print_tree(cur_d)
+        elif (make_leaf := (action == 'l')) or action == 'n':
+            name = ''
+            while len(name) == 0:
+                name = input("Name: ")
+                name = name.strip()
+                if name in cur_d:
+                    print(f"{bcolors.WARNING}# Name already exists{bcolors.ENDC}")
+                    name = ''
+            cur_pos.append(name)
+            if make_leaf:
+                res = tuple(cur_pos)
+                break
+            else:
+                cur_d[name] = {}
+
         elif action in recommended_actions:
             res = recommended_actions[action]
             break
