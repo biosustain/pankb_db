@@ -1,6 +1,8 @@
 from global_func import *
 from io import StringIO
 from thefuzz import process
+import shutil
+from datetime import datetime
 
 class bcolors:
     HEADER = '\033[95m'
@@ -252,3 +254,9 @@ if __name__ == "__main__":
 
     with open(out_path / "cat_not_found.txt", "w") as f:
         f.write("\n".join(cat_not_found))
+    
+    curtime = datetime.now()
+    isolation_source_json_path_backup = isolation_source_json_path.with_suffix(f".json.{curtime.strftime('%y%m%d_%H%M')}")
+    shutil.copyfile(isolation_source_json_path, isolation_source_json_path_backup)
+    with open(isolation_source_json_path, 'w') as f:
+         json.dump(source_annotation_tree, f)
