@@ -10,22 +10,11 @@ db_type = 'self_deployed'
 db_server = 'dev'
 
 # Whether to drop the existing collection in the DB (True, False):
-drop_collection = False
-# Upload or reupload data for ALL species (True, False): ----
-all_species = False
+drop_collection = True
 
 gene_batch_size = 10_000
 
-# In case all_species = False, rewrite the data only for the species from the list below.
-# This is a list dictionaries, each of which has two keys: 
-# 1. 'pangenome_analysis' - the species' id or pangenome's id included into the path on the Microsoft Azure Blob Storage (PanKB/web_data/species/<pangenome_analysis>/). Must contain underscores instead of whitespaces.
-# 2. 'species' - a name of the given species. Can contain whitespaces.
-#species_list = [
-#                {'pangenome_analysis': 'Aliivibrio_fischeri', 'species': 'Aliivibrio fischeri'},
-#                {'pangenome_analysis': 'Aliivibrio_fischeri_B', 'species': 'Aliivibrio fischeri B'}
-#               ]
-
-species = """Aliivibrio_fischeri
+pangenome_analyses = """Aliivibrio_fischeri
 Aliivibrio_fischeri_B
 Salinivibrio_kushneri
 Salinivibrio_siamensis
@@ -114,15 +103,10 @@ Streptomyces_bacillaris
 Streptomyces_olivaceus
 Weissella_cibaria
 Weissella_confusa"""
-species_list = [{"pangenome_analysis": s.strip(), "species": s.replace('_', ' ').strip()} for s in species.split('\n')]
+pangenome_analyses = """Aliivibrio_fischeri"""
+pangenome_analyses = [s.strip() for s in pangenome_analyses.split('\n')]
 
 # A local folder, where all the logs are to be stored: ----
 logs_folder = "/logs/etl/mongodb/"
 
-# Upload the log to the Microsoft Azure Blob Storage after it is created (separately for each of the collections)
-# (the name of the blob will start with PanKB/etl/logs/): ----
-upload_logs_for_organisms = False
-upload_logs_for_gene_annotations = False
-upload_logs_for_gene_info = False
-upload_logs_for_genome_info = False
-upload_logs_for_pathway_info = False
+output_path = "./web_data/"
