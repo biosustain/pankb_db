@@ -8,7 +8,7 @@ if __name__ == "__main__":
     logger = TimedLogger("pangene")
 
     # Obtain the db collection object: ----
-    collection = db_conn.db["pankb_gene_annotations_nova"]
+    collection = db_conn.db["pankb_gene_annotations"]
 
     if config.drop_collection:
         # Drop the collection if it exists: ----

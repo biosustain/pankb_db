@@ -8,7 +8,7 @@ if __name__ == "__main__":
     logger = TimedLogger("organisms")
 
     # Obtain the db collection object: ----
-    collection = db_conn.db["pankb_organisms_nova"]
+    collection = db_conn.db["pankb_organisms"]
 
     if config.drop_collection:
         # Drop the collection if it exists: ----

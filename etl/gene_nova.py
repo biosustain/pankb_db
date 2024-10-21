@@ -10,7 +10,7 @@ if __name__ == "__main__":
     logger = TimedLogger("gene")
 
     # Obtain the db collection object: ----
-    collection = db_conn.db["pankb_gene_info_nova"]
+    collection = db_conn.db["pankb_gene_info"]
 
     logger.info("Creating the indexes on the collection...")
     collection.create_index(['pangenome_analysis', 'gene'])
@@ -45,4 +45,4 @@ if __name__ == "__main__":
         inserted_total += len(requesting)
 
     logger.log_execution_time()
-    logger.info("Documents inserted: %s" % (len(requesting)))
+    logger.info(f"Documents inserted: {inserted_total}")
