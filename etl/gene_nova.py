@@ -12,14 +12,18 @@ if __name__ == "__main__":
     # Obtain the db collection object: ----
     collection = db_conn.db["pankb_gene_info"]
 
+    if config.drop_collection:
+        # Drop the collection if it exists: ----
+        collection.drop()
+        db_conn.db.create_collection(
+                "pankb_gene_info",
+                storageEngine={"wiredTiger": {"configString": "block_compressor=zlib"}}
+            )
+
     logger.info("Creating the indexes on the collection...")
     collection.create_index(['pangenome_analysis', 'gene'])
     collection.create_index(['pangenome_analysis', 'genome_id'])
     logger.info("The indexes have been successfully created.")
-
-    if config.drop_collection:
-        # Drop the collection if it exists: ----
-        collection.drop()
 
     requesting = []
     inserted_total = 0

@@ -1,4 +1,5 @@
-from global_func import *
+from connections import *
+
 from io import StringIO
 from thefuzz import process
 import shutil
@@ -14,16 +15,6 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-
-# Obtain the script execution start date and time: ----
-start_strftime = time.strftime("%Y-%m-%d_%H%M%S")
-script_start_time = time.time()
-
-# Set up the logging: ----
-logger = logging.getLogger("source_info")
-# Use the timestamp as a suffix for the log file name: ----
-logfile_name = config.logs_folder + config.db_server + "/source_info__" + start_strftime + ".log"
-logging.basicConfig(filename=logfile_name, level=logging.INFO)
 
 def unwrap_source_tree_recursively(result, d, keys=None):
     if keys is None:
@@ -185,6 +176,8 @@ def create_highcharts_entry(name, entry_id, value, parent_id=None):
     return d
 
 if __name__ == "__main__":
+    logger = TimedLogger("i_source_info")
+
     # Load the tree from a json file.
     isolation_source_json_path = Path("./isolation_source_annotations.json")
     with open(isolation_source_json_path, 'r') as f:
