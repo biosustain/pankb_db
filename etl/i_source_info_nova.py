@@ -188,7 +188,7 @@ def create_highcharts_structure(source_tree):
                 continue
             cur_id = cat if parent_id is None else f"{parent_id}-{cat}"
             cur_count = _recursive_highcharts_structure(value, parent_id=cur_id)
-            highcharts_data.append(create_highcharts_entry(cat, cur_id, count, parent_id=parent_id)
+            highcharts_data.append(create_highcharts_entry(cat, cur_id, count, parent_id=parent_id))
             count += cur_count
         return count
 
