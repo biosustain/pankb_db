@@ -4,6 +4,7 @@ from io import StringIO
 from thefuzz import process
 import shutil
 from datetime import datetime
+import json
 
 class bcolors:
     HEADER = '\033[95m'
@@ -175,6 +176,25 @@ def create_highcharts_entry(name, entry_id, value, parent_id=None):
         d["parent"] = parent_id
     return d
 
+def create_highcharts_structure(source_tree):
+    highcharts_data = []
+    
+    def _recursive_highcharts_structure(d, parent_id=None):
+        if isinstance(d, int):
+            return d
+        count = 0
+        for cat, value in d.items():
+            if parent_id is None and cat == "Missing":
+                continue
+            cur_id = cat if parent_id is None else f"{parent_id}-{cat}"
+            cur_count = _recursive_highcharts_structure(value, parent_id=cur_id)
+            highcharts_data.append(create_highcharts_entry(cat, cur_id, count, parent_id=parent_id)
+            count += cur_count
+        return count
+
+    _recursive_highcharts_structure(source_tree)
+    return highcharts_data
+
 if __name__ == "__main__":
     db_conn = DBConnection()
     # Obtain the db collection object: ----
@@ -220,24 +240,7 @@ if __name__ == "__main__":
             
             add_to_tree(source_tree, cat_data, 1, treetype="int")
 
-    # Create a highcharts-readable json file
-    # TODO: Still assumes 3 levels of categories.
-    highcharts_data = []
-    for cat1, v1 in source_tree.items():
-        if cat1 == "Missing":
-            continue
-        id1 = cat1
-        count1 = 0
-        for cat2, v2 in v1.items():
-            id2 = f"{id1}-{cat2}"
-            count2 = 0
-            for cat3, count3 in v2.items():
-                id3 = f"{id2}-{cat3}"
-                highcharts_data.append(create_highcharts_entry(cat3, id3, count3, parent_id=id2))
-                count2 += count3
-            highcharts_data.append(create_highcharts_entry(cat2, id2, count2, parent_id=id1))
-            count1 += count2
-        highcharts_data.append(create_highcharts_entry(cat1, id1, count1))
+    highcharts_data = create_highcharts_structure(source_tree)
 
     # Convert the hierarchical structure to JSON
     json_file_path = out_path / 'treemap_data.json'
