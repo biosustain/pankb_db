@@ -176,6 +176,10 @@ def create_highcharts_entry(name, entry_id, value, parent_id=None):
     return d
 
 if __name__ == "__main__":
+    db_conn = DBConnection()
+    # Obtain the db collection object: ----
+    collection = db_conn.db["pankb_genome_info"]
+
     logger = TimedLogger("i_source_info")
 
     # Load the tree from a json file.
@@ -192,16 +196,13 @@ if __name__ == "__main__":
     source_tree = {}
     status = 1
 
-    for item in pangenome_analyses_species_dict_list:
-        pangenome_analysis = item["pangenome_analysis"]
-        species = item["species"]
+    for pangenome_analysis, species in pangenome_analyses.items():
+        # # Retrieve the respective *.json file content from the Blob storage: ----
+        # jsonObj = requests.get(f'https://pankb.blob.core.windows.net/data/PanKB/web_data/species/{pangenome_analysis}/source_info_core.json').json()
+        # source_dict = json.loads(json.dumps(jsonObj))
 
-        # Retrieve the respective *.json file content from the Blob storage: ----
-        jsonObj = requests.get(f'https://pankb.blob.core.windows.net/data/PanKB/web_data/species/{pangenome_analysis}/source_info_core.json').json()
-        source_dict = json.loads(json.dumps(jsonObj))
-
-        for genome, data in source_dict.items():
-            iso_source = str(data[1]).lower()
+        for data in collection.find({"pangenome_analysis": pangenome_analysis}, projection=["genome_id", "isolation_source"]):
+            iso_source = str(data.get("isolation_source", "Missing")).lower()
             if iso_source == "undefined" or iso_source == "missing": # Shortcut for common case
                 cat_data = ("Missing", "Missing", "Missing")
             else:
