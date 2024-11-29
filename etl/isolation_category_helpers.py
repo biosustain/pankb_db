@@ -1,10 +1,4 @@
-from connections import *
-
-from io import StringIO
 from thefuzz import process
-import shutil
-from datetime import datetime
-import json
 
 class bcolors:
     HEADER = '\033[95m'
@@ -194,63 +188,3 @@ def create_highcharts_structure(source_tree):
 
     _recursive_highcharts_structure(source_tree)
     return highcharts_data
-
-if __name__ == "__main__":
-    db_conn = DBConnection()
-    # Obtain the db collection object: ----
-    collection = db_conn.db["pankb_genome_info"]
-
-    logger = TimedLogger("i_source_info")
-
-    # Load the tree from a json file.
-    isolation_source_json_path = Path("./isolation_source_annotations.json")
-    with open(isolation_source_json_path, 'r') as f:
-        source_annotation_tree = json.load(f)
-
-    # Create a 'isolation source' to categories mapping
-    source_annotation = {}
-    unwrap_source_tree_recursively(source_annotation, source_annotation_tree)
-    # print(source_annotation)
-
-    cat_not_found = set()
-    source_tree = {}
-    status = 1
-
-    for pangenome_analysis, species in pangenome_analyses.items():
-        # # Retrieve the respective *.json file content from the Blob storage: ----
-        # jsonObj = requests.get(f'https://pankb.blob.core.windows.net/data/PanKB/web_data/species/{pangenome_analysis}/source_info_core.json').json()
-        # source_dict = json.loads(json.dumps(jsonObj))
-
-        for data in collection.find({"pangenome_analysis": pangenome_analysis}, projection=["genome_id", "isolation_source"]):
-            iso_source = str(data.get("isolation_source", "Missing")).lower()
-            if iso_source == "undefined" or iso_source == "missing": # Shortcut for common case
-                cat_data = ("Missing", "Missing", "Missing")
-            else:
-                cat_data = source_annotation.get(iso_source, None)
-
-                if cat_data is None:
-                    if status > 0:
-                        status, cat_data = input_category_info(iso_source, source_annotation_tree, source_annotation)
-                    if status < 0:
-                        exit(1)
-                    if cat_data is None:
-                        cat_data = ("Missing", "Missing", "No Categories")
-                        cat_not_found.add(iso_source)
-            
-            add_to_tree(source_tree, cat_data, 1, treetype="int")
-
-    highcharts_data = create_highcharts_structure(source_tree)
-
-    # Convert the hierarchical structure to JSON
-    json_file_path = out_path / 'treemap_data.json'
-    with open(json_file_path, 'w') as f:
-        json.dump(highcharts_data, f)
-
-    with open(out_path / "cat_not_found.txt", "w") as f:
-        f.write("\n".join(cat_not_found))
-    
-    curtime = datetime.now()
-    isolation_source_json_path_backup = isolation_source_json_path.with_suffix(f".json.{time.strftime('%y%m%d_%H%M')}")
-    shutil.copyfile(isolation_source_json_path, isolation_source_json_path_backup)
-    with open(isolation_source_json_path, 'w') as f:
-         json.dump(source_annotation_tree, f)

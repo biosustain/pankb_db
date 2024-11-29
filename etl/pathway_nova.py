@@ -18,7 +18,7 @@ if __name__ == "__main__":
         logger.info(f" - Processing {pangenome_analysis}")
         requesting = []
         # Retrieve the respective *.json file content from the Blob storage: ----
-        pathways_list = requests.get(f'https://pankb.blob.core.windows.net/data/PanKB/web_data/species/{pangenome_analysis}/nova/pathway.json').json()
+        pathways_list = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/nova/pathway.json').json()
 
         for pathway in pathways_list:
             pathway_filter = {"pathway_id": pathway["pathway_id"]}

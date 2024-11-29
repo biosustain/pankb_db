@@ -24,7 +24,7 @@ if __name__ == "__main__":
     for pangenome_analysis, species in pangenome_analyses.items():
         logger.info(f" - Processing {pangenome_analysis}")
         # Retrieve the respective *.json file content from the Blob storage: ----
-        with requests.get(f'https://pankb.blob.core.windows.net/data/PanKB/web_data/species/{pangenome_analysis}/nova/genome.jsonl', stream=True) as r:
+        with requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/nova/genome.jsonl', stream=True) as r:
             r.raise_for_status()
             for line in r.iter_lines():
                 genome_dict = json.loads(line)

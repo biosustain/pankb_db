@@ -23,7 +23,7 @@ if __name__ == "__main__":
     for pangenome_analysis, species in pangenome_analyses.items():
         logger.info(f" - Processing {pangenome_analysis}")
         # Retrieve the respective *.json file content from the Blob storage: ----
-        pangene_dict = requests.get(f'https://pankb.blob.core.windows.net/data/PanKB/web_data/species/{pangenome_analysis}/nova/pangene.json').json()
+        pangene_dict = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/nova/pangene.json').json()
 
         requesting.extend([InsertOne(d) for d in pangene_dict])
 

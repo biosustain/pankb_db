@@ -34,6 +34,9 @@ class DBConnection:
 pangenome_analyses = {x: x.replace("_", " ") for x in config.pangenome_analyses}
 
 class BlobConnection:
+    base_url = "https://pankb.blob.core.windows.net/data/"
+    web_data_path = "PanKB/web_data_v2/"
+
     def __init__(self):
         # Access to the Microsoft Azure Blob Storage: ----
         blob_storage_conn_string = os.getenv('BLOB_STORAGE_CONN_STRING')
