@@ -16,6 +16,7 @@ if __name__ == "__main__":
 
     logger.info("Creating the indexes on the collection...")
     collection.create_index(['pangenome_analysis', 'gene'])
+    collection.create_index(['pa_gene'])
     logger.info("The indexes have been successfully created.")
 
     requesting = []
@@ -25,7 +26,7 @@ if __name__ == "__main__":
         # Retrieve the respective *.json file content from the Blob storage: ----
         pangene_dict = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/nova/pangene.json').json()
 
-        requesting.extend([InsertOne(d) for d in pangene_dict])
+        requesting.extend([InsertOne({**d, "pa_gene": f"{d['pangenome_analysis']}:{d['gene']}"}) for d in pangene_dict])
 
     # Insert rows into the MongoDB and print some stats: ----
     logger.info("--- DB Insertion ---")

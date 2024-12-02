@@ -24,11 +24,18 @@ if __name__ == "__main__":
             pathway_filter = {"pathway_id": pathway["pathway_id"]}
             doc = collection.find_one(pathway_filter)
             if doc is None:
-                requesting.append(InsertOne(pathway))
+                doc = {**pathway}
+                doc["genes"] = []
+                for gene in pathway["genes"]:
+                    gene_enc = f"{gene['pangenome_analysis']}:{gene['gene']}"
+                    if not gene_enc in doc["genes"]:
+                        doc["genes"].append(gene_enc)
+                requesting.append(InsertOne(doc))
             else:
                 for gene in pathway["genes"]:
-                    if not gene in doc["genes"]:
-                        doc["genes"].append(gene)
+                    gene_enc = f"{gene['pangenome_analysis']}:{gene['gene']}"
+                    if not gene_enc in doc["genes"]:
+                        doc["genes"].append(gene_enc)
                 requesting.append(ReplaceOne(pathway_filter, doc))
 
         # Insert rows into the MongoDB and print some stats: ----
