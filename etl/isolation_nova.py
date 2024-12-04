@@ -1,6 +1,7 @@
 from connections import *
 from countries import COUNTRIES
-import gzip
+from datetime import datetime
+import shutil
 import json
 import requests
 from pymongo import UpdateOne
@@ -108,3 +109,19 @@ if __name__ == "__main__":
     result = collection.bulk_write(requesting, ordered=True)
     logger.log_execution_time()
     logger.info(f"Documents inserted: {len(requesting)}")
+
+    highcharts_data = iso.create_highcharts_structure(source_tree)
+
+    # Convert the hierarchical structure to JSON
+    json_file_path = out_path / 'treemap_data.json'
+    with open(json_file_path, 'w') as f:
+        json.dump(highcharts_data, f)
+
+    with open(out_path / "cat_not_found.txt", "w") as f:
+        f.write("\n".join(cat_not_found))
+    
+    curtime = datetime.now()
+    isolation_source_json_path_backup = isolation_source_json_path.with_suffix(f".json.{time.strftime('%y%m%d_%H%M')}")
+    shutil.copyfile(isolation_source_json_path, isolation_source_json_path_backup)
+    with open(isolation_source_json_path, 'w') as f:
+         json.dump(source_annotation_tree, f)
