@@ -14,6 +14,12 @@ if __name__ == "__main__":
         # Drop the collection if it exists: ----
         collection.drop()
 
+    logger.info("Creating the indexes on the collection...")
+    collection.create_index(['pangenome_analysis'], name="lookup_index")
+    collection.create_index(['species'], name="species_index")
+    collection.create_index(['family'], name="family_index")
+    logger.info("The indexes have been successfully created.")
+
     requesting = []
 
     for pangenome_analysis, species in pangenome_analyses.items():

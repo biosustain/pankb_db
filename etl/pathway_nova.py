@@ -1,5 +1,5 @@
 from connections import *
-from pymongo import InsertOne, ReplaceOne
+from pymongo import InsertOne, ReplaceOne, UpdateOne, TEXT
 import requests
 import json
 
@@ -14,29 +14,41 @@ if __name__ == "__main__":
         # Drop the collection if it exists: ----
         collection.drop()
 
+    logger.info("Creating the indexes on the collection...")
+    collection.create_index(['pathway_id'], name="lookup_index")
+    logger.info("The indexes have been successfully created.")
+
     for pangenome_analysis, species in pangenome_analyses.items():
         logger.info(f" - Processing {pangenome_analysis}")
         requesting = []
         # Retrieve the respective *.json file content from the Blob storage: ----
         pathways_list = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/nova/pathway.json').json()
+        requesting = [
+                UpdateOne(
+                    {"pathway_id": p["pathway_id"]},
+                    {"$set": {"pathway_id": p["pathway_id"], "pathway_name": p["pathway_name"]}},
+                    upsert=True
+                ) for p in pathways_list
+            ]
+        
+        # for pathway in pathways_list:
+        #     pathway_filter = {"pathway_id": pathway["pathway_id"]}
+        #     doc = collection.find_one(pathway_filter)
+        #     if doc is None:
+        #         doc = {**pathway}
+        #         doc["genes"] = []
+        #         for gene in pathway["genes"]:
+        #             gene_enc = f"{gene['pangenome_analysis']}:{gene['gene']}"
+        #             if not gene_enc in doc["genes"]:
+        #                 doc["genes"].append(gene_enc)
+        #         requesting.append(InsertOne(doc))
+        #     else:
+        #         for gene in pathway["genes"]:
+        #             gene_enc = f"{gene['pangenome_analysis']}:{gene['gene']}"
+        #             if not gene_enc in doc["genes"]:
+        #                 doc["genes"].append(gene_enc)
+        #         requesting.append(ReplaceOne(pathway_filter, doc))
 
-        for pathway in pathways_list:
-            pathway_filter = {"pathway_id": pathway["pathway_id"]}
-            doc = collection.find_one(pathway_filter)
-            if doc is None:
-                doc = {**pathway}
-                doc["genes"] = []
-                for gene in pathway["genes"]:
-                    gene_enc = f"{gene['pangenome_analysis']}:{gene['gene']}"
-                    if not gene_enc in doc["genes"]:
-                        doc["genes"].append(gene_enc)
-                requesting.append(InsertOne(doc))
-            else:
-                for gene in pathway["genes"]:
-                    gene_enc = f"{gene['pangenome_analysis']}:{gene['gene']}"
-                    if not gene_enc in doc["genes"]:
-                        doc["genes"].append(gene_enc)
-                requesting.append(ReplaceOne(pathway_filter, doc))
 
         # Insert rows into the MongoDB and print some stats: ----
         logger.info("--- DB Insertion ---")
