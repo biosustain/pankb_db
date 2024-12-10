@@ -20,3 +20,5 @@ __pycache__/
 etl/misc.py
 venv/
 postgresql/
+
+etl/web_data/

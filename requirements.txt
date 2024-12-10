@@ -1,6 +1,7 @@
 azure-storage-blob==12.20.0
 bioservices==1.11.2
-pandas==2.0.3
+pandas==2.2.3
 pymongo==4.6.2
 python-dotenv==1.0.1
 Requests==2.32.3
+thefuzz==0.22.1
