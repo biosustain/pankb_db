@@ -10,7 +10,7 @@ db_type = 'self_deployed'
 db_server = 'dev'
 
 # Whether to drop the existing collection in the DB (True, False):
-drop_collection = True
+drop_collection = False
 
 gene_batch_size = 10_000
 
@@ -232,7 +232,68 @@ Vibrio_campbellii
 Vibrio_cholerae
 Kitasatospora_aureofaciens
 Streptomyces_ardesiacus"""
-pangenome_analyses = [s.strip() for s in pangenome_analyses.split('\n')]
+pangenome_analyses = """
+Lactococcus_A_carnosus
+Lactococcus_A_raffinolactis
+Lactococcus_cremoris
+Lactococcus_formosensis
+Lactococcus_garvieae
+Lactococcus_lactis
+Lactococcus_petauri
+Streptococcus_agalactiae
+Streptococcus_anginosus
+Streptococcus_caecimuris
+Streptococcus_canis
+Streptococcus_constellatus
+Streptococcus_dysgalactiae
+Streptococcus_equi
+Streptococcus_equinus
+Streptococcus_faecavium
+Streptococcus_gallolyticus
+Streptococcus_gordonii
+Streptococcus_halichoeri
+Streptococcus_hominis
+Streptococcus_infantarius
+Streptococcus_iniae
+Streptococcus_intermedius
+Streptococcus_lutetiensis
+Streptococcus_macedonicus
+Streptococcus_mitis
+Streptococcus_mitis_BM
+Streptococcus_mutans
+Streptococcus_oralis
+Streptococcus_oralis_H
+Streptococcus_oralis_S
+Streptococcus_parasanguinis
+Streptococcus_parasanguinis_F
+Streptococcus_parasanguinis_I
+Streptococcus_parauberis
+Streptococcus_pasteurianus
+Streptococcus_pneumoniae
+Streptococcus_pseudopneumoniae
+Streptococcus_pyogenes
+Streptococcus_ruminantium
+Streptococcus_ruminicola
+Streptococcus_salivarius
+Streptococcus_salivarius_D
+Streptococcus_sanguinis
+Streptococcus_sobrinus
+Streptococcus_sp000187445
+Streptococcus_sp001556435
+Streptococcus_sp030546305
+Streptococcus_sp900766505
+Streptococcus_suis
+Streptococcus_suis_AA
+Streptococcus_suis_AE
+Streptococcus_suis_P
+Streptococcus_suis_V
+Streptococcus_suis_W
+Streptococcus_thermophilus
+Streptococcus_uberis
+Streptococcus_vaginalis
+Streptococcus_vestibularis
+"""
+pangenome_analyses = [s.strip() for s in pangenome_analyses.strip().split('\n')]
 
 # A local folder, where all the logs are to be stored: ----
 logs_folder = "/logs/etl/mongodb/"

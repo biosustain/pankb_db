@@ -2,7 +2,7 @@ from connections import *
 import gzip
 import json
 import requests
-from pymongo import InsertOne
+from pymongo import UpdateOne
 
 if __name__ == "__main__":
     db_conn = DBConnection()
@@ -36,17 +36,23 @@ if __name__ == "__main__":
             r.raise_for_status()
             for line in r.iter_lines():
                 gene_dict = json.loads(line)
-                requesting.append(InsertOne(gene_dict))
+
+                filter_query = {"pangenome_analysis": pangenome_analysis, "gene": gene_dict["gene"]}
+                update_query = {"$set": gene_dict}
+
+                requesting.append(UpdateOne(filter_query, update_query, upsert=True))
+
                 if len(requesting) >= config.gene_batch_size:
                     # Insert rows into the MongoDB and print some stats: ----
                     logger.info("--- DB Insertion ---")
                     result = collection.bulk_write(requesting, ordered=True)
                     inserted_total += len(requesting)
                     requesting = []
+                    
     if len(requesting) > 0:
         logger.info("--- Final DB Insertion ---")
         result = collection.bulk_write(requesting, ordered=True)
         inserted_total += len(requesting)
 
     logger.log_execution_time()
-    logger.info(f"Documents inserted: {inserted_total}")
+    logger.info(f"Documents upserted: {inserted_total}")

@@ -72,7 +72,10 @@ class TimedLogger:
         self.logger = logging.getLogger(name)
         # Use the timestamp as a suffix for the log file name: ----
         logfile_name = f"{config.logs_folder}{config.db_server}/{name}__{start_strftime}.log"
-        logging.basicConfig(filename=logfile_name, level=logging.INFO)
+        logging.basicConfig(level=logging.INFO, handlers=[
+            logging.FileHandler(logfile_name),
+            logging.StreamHandler()
+        ])
     
     def log_execution_time(self):
         self.logger.info("Execution time: %.2f seconds" % (time.time() - self.script_start_time))
