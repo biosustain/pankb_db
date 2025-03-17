@@ -49,4 +49,4 @@ if __name__ == "__main__":
         inserted_total += len(requesting)
 
     logger.log_execution_time()
-    logger.info(f"Documents inserted: {inserted_total}")
+    logger.info(f"Documents upserted: {inserted_total}")

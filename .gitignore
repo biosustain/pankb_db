@@ -21,4 +21,9 @@ etl/misc.py
 venv/
 postgresql/
 
+# json backups
+etl/isolation_source_annotations.json.*
+
+# misc
 etl/web_data/
+*nohup.out

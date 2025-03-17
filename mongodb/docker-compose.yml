@@ -1,17 +1,17 @@
 networks:
   pankb-net:
     name: pankb-net
-    external: true
+    external: false
 
 services:
   mongodb:
     container_name: pankb-mongodb
-    image: mongo:6.0-rc
+    image: mongo:8.0.3
     restart: always
     command: [ '--auth', '--wiredTigerCacheSizeGB=1' ]
     volumes:
       - ./docker-entrypoint-initdb.d/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
-      - ../../docker_volumes/mongodb:/data/db
+      - /data/mongodb:/data/db
     env_file:
       - .env
     ports:

@@ -1,5 +1,5 @@
 from connections import *
-from pymongo import InsertOne
+from pymongo import UpdateOne
 import requests
 import json
 
@@ -27,10 +27,14 @@ if __name__ == "__main__":
         # Retrieve the respective *.json file content from the Blob storage: ----
         organism_dict = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/nova/organism.json').json()
 
-        requesting.append(InsertOne(organism_dict))
+        # Define the filter and update for the upsert operation
+        filter_query = {"family": organism_dict["family"], "pangenome_analysis": pangenome_analysis}
+        update_query = {"$set": organism_dict}
+
+        requesting.append(UpdateOne(filter_query, update_query, upsert=True))
 
     # Insert rows into the MongoDB and print some stats: ----
     logger.info("--- DB Insertion ---")
     result = collection.bulk_write(requesting, ordered=True)
     logger.log_execution_time()
-    logger.info("Documents inserted: %s" % (len(requesting)))
+    logger.info("Documents upserted: %s" % (len(requesting)))
