@@ -28,7 +28,7 @@ if __name__ == "__main__":
         organism_dict = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/nova/organism.json').json()
 
         # Define the filter and update for the upsert operation
-        filter_query = {"family": organism_dict["family"], "pangenome_analysis": pangenome_analysis}
+        filter_query = {"pangenome_analysis": pangenome_analysis}
         update_query = {"$set": organism_dict}
 
         requesting.append(UpdateOne(filter_query, update_query, upsert=True))
@@ -38,3 +38,5 @@ if __name__ == "__main__":
     result = collection.bulk_write(requesting, ordered=True)
     logger.log_execution_time()
     logger.info("Documents upserted: %s" % (len(requesting)))
+
+
