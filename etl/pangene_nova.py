@@ -32,8 +32,9 @@ if __name__ == "__main__":
             requesting.append(UpdateOne(filter_query, update_query, upsert=True))
 
 
-    # Insert rows into the MongoDB and print some stats: ----
-    logger.info("--- DB Insertion ---")
-    result = collection.bulk_write(requesting, ordered=True)
-    logger.log_execution_time()
-    logger.info("Documents upserted: %s" % (len(requesting)))
+        # Insert rows into the MongoDB and print some stats: ----
+        logger.info("--- DB Insertion ---")
+        result = collection.bulk_write(requesting, ordered=True)
+        logger.log_execution_time()
+        logger.info("Documents upserted: %s" % (len(requesting)))
+        requesting = []
