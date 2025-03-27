@@ -14,6 +14,9 @@ drop_collection = False
 
 gene_batch_size = 10_000
 
+# Whether to stop the script execution on error (currenly only gene_nova)
+halt_on_error = False
+
 pangenome_analyses = """
 Aliivibrio_fischeri
 Aliivibrio_fischeri_B
