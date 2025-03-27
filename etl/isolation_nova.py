@@ -124,4 +124,4 @@ if __name__ == "__main__":
     isolation_source_json_path_backup = isolation_source_json_path.with_suffix(f".json.{time.strftime('%y%m%d_%H%M')}")
     shutil.copyfile(isolation_source_json_path, isolation_source_json_path_backup)
     with open(isolation_source_json_path, 'w') as f:
-         json.dump(source_annotation_tree, f)
+         json.dump(source_annotation_tree, f, indent=4)
