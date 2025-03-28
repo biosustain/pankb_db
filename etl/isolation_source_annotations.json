@@ -52,7 +52,11 @@
                 "aquatic bird feces",
                 "bat guano from cave soil",
                 "cattle manure",
-                "anaerobic effluent of swine manure"
+                "anaerobic effluent of swine manure",
+                "feces samples from rumen acidosis",
+                "feces from endurance ride fontainebleau",
+                "feces of spf mouse",
+                "chicken caecal content"
             ],
             "Human feces": [
                 "infant feces",
@@ -179,7 +183,22 @@
                 "rectal swab from college student",
                 "anal swabs",
                 "vibriosis episode",
-                "digestive tract"
+                "digestive tract",
+                "gastric fluid",
+                "gumline",
+                "perianal region",
+                "gastric juice",
+                "tongue",
+                "materia alba",
+                "enamel caries of an adult",
+                "enamel caries of a child",
+                "carious cavity from patient susceptible to dental caries",
+                "carious lesion",
+                "teeth",
+                "mouth",
+                "esophagus aspirate",
+                "skin, tongue",
+                "ileostomy effluent evening sample obtained from a 79 year-old male ileostomist plated on mitis-salivarius agar"
             ],
             "Human saliva": [
                 "saliva",
@@ -236,7 +255,31 @@
                 "rectum of clinical healthy adult laying duck",
                 "bee gut",
                 "rumen fluid",
-                "gut of lavar"
+                "gut of lavar",
+                "intestinal mucus of brown trout",
+                "digestive tract of a zophobas atratus larvae",
+                "dpank/fbl mutant fly guts",
+                "termite gut",
+                "silkworm intestine",
+                "fish gut",
+                "nile tilapia (oreochromis niloticus)",
+                "right guttural pouch",
+                "left guttural pouch",
+                "guttural pouch",
+                "guttural pouch of horse with post strangles myopathy",
+                "guttural pouch lavage",
+                "gutteral pouch",
+                "guttural pouch lavage fluid",
+                "gluttural pouch",
+                "canine oral cavity",
+                "rumen",
+                "cattle rumen",
+                "gut of vertebrate mammal",
+                "broiler chicken gastrointestinal tract",
+                "chicken gut metagenome",
+                "mouse gut metagenome",
+                "rumen from alfalfa fed cow",
+                "swine"
             ]
         },
         "Human Others": {
@@ -269,7 +312,15 @@
                 "blood culture",
                 "clinical, blood",
                 "puncture fluid",
-                "bile"
+                "bile",
+                "placenta",
+                "placenta fetal side",
+                "intraocular contents",
+                "umbilical secretions",
+                "secretion of auditory canal",
+                "blood of a 58-year-old endometrial cancer patient who had type 2 diabetes mellitus and relapsed after radiotherapy with multiple metastases to the lungs and abdominal cavity",
+                "ocular",
+                "auditory canal"
             ],
             "Medical Devices": [
                 "venous cateter",
@@ -313,7 +364,14 @@
                 "mammary gland",
                 "human cervix",
                 "kidney",
-                "internal organs"
+                "internal organs",
+                "mitral valve",
+                "clitoris",
+                "chondroid",
+                "chondroid lgp",
+                "tooth",
+                "mastoid",
+                "tissue from tooth extraction"
             ],
             "Other Human Body Parts": [
                 "heads",
@@ -356,7 +414,10 @@
                 "genital",
                 "physical",
                 "abdominal",
-                "peritoneal cavity"
+                "peritoneal cavity",
+                "bone head",
+                "bile duct of patients with primary sclerosing cholangitis (psc)",
+                "facial cutaneous"
             ],
             "Other Medical Samples": [
                 "infant",
@@ -391,7 +452,9 @@
                 "clinic",
                 "laboratory sample",
                 "sample from a sick person",
-                "public health laboratory"
+                "public health laboratory",
+                "cardiac lesion",
+                "fetus"
             ],
             "Probiotic": [
                 "probiotic capsule",
@@ -424,7 +487,12 @@
                 "pharynx",
                 "bronchitis secretion from patient in hospital",
                 "nasal swab",
-                "retropharyngeal"
+                "retropharyngeal",
+                "thorax drainage",
+                "bronchoalveolar lavage fluid (balf)",
+                "sample' upper respiratory tract was taken using a throat swab and cultured in a sterile environment.",
+                "sample' upper respiratory tract was taken using a throat swab and cultured in a sterile environment",
+                "expectorate"
             ]
         },
         "Human Urogenital Tract Related": {
@@ -477,7 +545,13 @@
                 "vaginal secretion",
                 "wound labia",
                 "female urogenital tract",
-                "healthy female urogenital tract"
+                "healthy female urogenital tract",
+                "cervico-uterine swab",
+                "gynaecological"
+            ],
+            "Other": {},
+            "Urogenital": [
+                "prepuce"
             ]
         },
         "Inflammation and Infection": {
@@ -490,7 +564,11 @@
                 "otitis externa",
                 "wound infection",
                 "ear infection",
-                "otitis"
+                "otitis",
+                "equine infectious endometritis",
+                "equine abcess",
+                "subcutaneous abscess foci in an amazon freshwater dolphin suffering golf ball disease",
+                "patient suffering sinusitis"
             ],
             "Inflammation": [
                 "wound right cheek",
@@ -562,7 +640,13 @@
                 "blister",
                 "skin ulcer",
                 "corneal ulcer",
-                "foot wound from a diabetic patient"
+                "foot wound from a diabetic patient",
+                "postoperative maxillary cyst",
+                "blood from a patient with infective endocarditis",
+                "subacute endocarditis",
+                "subacute bacterial endocarditis",
+                "bacterial endocarditis",
+                "a confirmed case of infective endocarditis"
             ]
         },
         "Other Animal Materials": {
@@ -690,7 +774,18 @@
                 "spat (early spat 1000 m)",
                 "spat",
                 "ems/ahpnd-diseased hepatopancreas",
-                "hepatopancrease"
+                "hepatopancrease",
+                "fish part (slab) sold as silver carp; muscle",
+                "fish part (head) sold as asian bighead carp; muscle",
+                "whole fish sold as black tilapia; muscle",
+                "tilapia from fish farming",
+                "fish organ",
+                "tissue from oliver flounder",
+                "aquaculture tilapia pond",
+                "dead farmed asian seabass in pond",
+                "diseased olive flounder at commercial aquaculture farm",
+                "diseased olive flounder",
+                "muscle"
             ],
             "Birds": [
                 "broiler fillet",
@@ -713,7 +808,10 @@
                 "migratory bird",
                 "migratory birds",
                 "turkey with septicemic infection",
-                "eggs"
+                "eggs",
+                "map chicken breast",
+                "packaged chicken broiler leg",
+                "brain of a 10-day-old duckling"
             ],
             "Insect": [
                 "wild drosophila",
@@ -728,7 +826,13 @@
                 "dung beetles",
                 "haemolymph",
                 "post larvae whole body",
-                "hemolymph"
+                "hemolymph",
+                "wild flies",
+                "leaf hopper",
+                "whole body fruit fly from household kitchen",
+                "insect (leafhopper)",
+                "bumblebee, b. lucorum",
+                "bumblebee, b. terrestris"
             ],
             "Mammals": [
                 "weaned piglets",
@@ -785,7 +889,22 @@
                 "mastitis abscess from cow with severe clinical mastitis in two quarters",
                 "ovine abscess",
                 "neck subcutaneous abscess of a 2 years old boer goat",
-                "cured hides"
+                "cured hides",
+                "map pork",
+                "map minced beef",
+                "map beef steaks",
+                "lung sample of a healthy pig",
+                "dairy farm; cattle udder",
+                "bovine udder",
+                "horse with strangles",
+                "nasal swab taken from a healthy thoroughbred racehorse",
+                "dog tonsil (ladlow et al., 2006)",
+                "popliteal lymph node of cull cow",
+                "lung of a diseased pig",
+                "brain of a pig with meningitis",
+                "clinically healthy pig",
+                "slaughter pig's lungs",
+                "domestic pig"
             ],
             "Others": [
                 "meat",
@@ -806,7 +925,11 @@
                 "liquid-air interface biofilm",
                 "veterinary",
                 "larvae",
-                "natural biofilms"
+                "natural biofilms",
+                "kennel",
+                "epidermal paddle",
+                "dual-strain biofilm on detroit 562 cells",
+                "single-strain biofilm on detroit 562 cells"
             ]
         },
         "Human": {
@@ -844,7 +967,29 @@
                     "sample from a sick person",
                     "clinic",
                     "public health laboratory",
-                    "chonnam national university hospital, korea, 2003"
+                    "chonnam national university hospital, korea, 2003",
+                    "mutant from a clinical s12/111 isolate",
+                    "biopsy",
+                    "patient clinical isolate",
+                    "nasopharyngeal swab (carrier)",
+                    "swab (carrier)",
+                    "conjunctival swab",
+                    "sinus swab",
+                    "nasopharyngeal",
+                    "knee aspirate",
+                    "tonsils",
+                    "a caries-active dental patient",
+                    "tonsil",
+                    "conjunctiva",
+                    "puds swab",
+                    "np swab",
+                    "a patient with scarlatina",
+                    "human body",
+                    "sepsis (no localising source)",
+                    "sepsis (no localising source), stss",
+                    "aspirate",
+                    "healthy baby",
+                    "healthy"
                 ],
                 "Other Human Body Parts": [
                     "nose",
@@ -879,11 +1024,38 @@
                     "adult body",
                     "physical",
                     "faces",
-                    "autopsy"
+                    "autopsy",
+                    "joint",
+                    "joint fluid",
+                    "bone left fourth toe",
+                    "joint aspirate",
+                    "infected limb joint",
+                    "cervical canal",
+                    "cervical secretion",
+                    "nasal swab (vaccinated 09/02/05)",
+                    "nasal swab (vaccinated 21/01/05)",
+                    "nasal cavity",
+                    "nasal wash",
+                    "nose, neck",
+                    "neck",
+                    "carious dentine",
+                    "middle ear fluid sample",
+                    "middle ear",
+                    "ear swab",
+                    "ear canal secretions",
+                    "middle ear fluid",
+                    "nose swab",
+                    "ear discharge",
+                    "nasal sinuses swab",
+                    "foot lesion",
+                    "joint / synovial fluid",
+                    "left great toe"
                 ],
                 "Medical Devices": [
                     "venous cateter",
-                    "central venous catheter"
+                    "central venous catheter",
+                    "central catheter",
+                    "venous"
                 ],
                 "Probiotic": [
                     "probitic products",
@@ -954,7 +1126,13 @@
                     "stool of 63 year old male",
                     "human with diarrhea assosiated with seafood cunsumption, hospital general",
                     "human with diarrhea assosiated with seafood cunsumption, pacific ocean coast northern chile",
-                    "feces from a healthy human"
+                    "feces from a healthy human",
+                    "infant stool",
+                    "human feces metagenome",
+                    "stool sample of individual with bacteremia",
+                    "human fecal sample",
+                    "stool of a child hospitalized at icddr,b hospital in dhaka",
+                    "stool of a hospitalized child"
                 ],
                 "Human saliva": [
                     "saliva from oral cavity",
@@ -962,7 +1140,12 @@
                     "saliva from healthy adult female",
                     "saliva",
                     "human saliva",
-                    "saliva from healthy subject"
+                    "saliva from healthy subject",
+                    "saliva from healthy adult",
+                    "saliva from female",
+                    "saliva from male",
+                    "saliva from child",
+                    "saliva from healthy child"
                 ],
                 "Urine Related": [
                     "urinary tract",
@@ -981,7 +1164,8 @@
                     "urine (recurrent uti)",
                     "urine (asymptomatic uti)",
                     "urine cath",
-                    "catheter"
+                    "catheter",
+                    "urine cvs"
                 ],
                 "Body Fluids and Secretions": [
                     "blood",
@@ -1014,7 +1198,59 @@
                     "blood sample",
                     "puncture fluid",
                     "blood specimen",
-                    "ascetic fluid"
+                    "ascetic fluid",
+                    "feces of woman",
+                    "blood sample from patient with septicemia",
+                    "blood sample of individual with bacteremia",
+                    "blood-csf",
+                    "amniotic fluid",
+                    "cerebro-spinal fluid",
+                    "blood sample from a newborn",
+                    "blood from female twin",
+                    "blood from male twin",
+                    "blood from hospitalized preterm neonate",
+                    "blood from neonate",
+                    "ear secretion",
+                    "mastitis breast milk",
+                    "cardiac blood",
+                    "pleural fluid",
+                    "sinus fluid",
+                    "plerual fluid",
+                    "human blood",
+                    "blood by aortic valve",
+                    "pyogenic fluids of percutaneous drainage",
+                    "clinical isolate from the blood of a 30 year old patient",
+                    "blood sample taken from a clinical pediatric case of invasive pneumococcal disease",
+                    "cerebral spinal fluid",
+                    "pleural fuid",
+                    "vitreous",
+                    "human cerebrospinal fluid",
+                    "cerebrospinal fluid from 13 month old female",
+                    "vitreous humor",
+                    "female patient blood",
+                    "extract sample's sputum with sterilizing tube and cultured in a sterile environment.",
+                    "extract sample's blood with edta anticoagulant tube and cultured in a sterile environment.",
+                    "cerebrospinal fluid extracted from sample and then cultured in a sterile environment.",
+                    "blood-culture",
+                    "venous blood",
+                    "csf + blood",
+                    "blood from scarlet fever outbreak",
+                    "blood from 34-years-old female",
+                    "blood from 65-years-old female",
+                    "blood from 57-years-old female",
+                    "blood from 77-years-old female",
+                    "csf from 4-years-old male",
+                    "blood from 90-years-old male",
+                    "blood from 60-years-old male",
+                    "blood from 76-years-old male",
+                    "blood from 67-years-old male",
+                    "blood from 40-years-old female",
+                    "blood from 41-years-old female",
+                    "blood from 71-years-old female",
+                    "blood from 54-years-old male",
+                    "abdominal liquid",
+                    "brain/blood",
+                    "blood and csf"
                 ]
             },
             "Tissues and Organs": {
@@ -1084,7 +1320,46 @@
                     "vibriosis episode",
                     "stomach",
                     "anal swabs",
-                    "gastroenteritis"
+                    "gastroenteritis",
+                    "transcending colon brush",
+                    "digesta",
+                    "vaginal-rectal",
+                    "vaginal rectal screen",
+                    "vaginal-rectal swabs",
+                    "neonatal anal swab",
+                    "subgingival dental plaque",
+                    "anal gland secretions",
+                    "oral metagenome",
+                    "caudal maxillary sinus tissues swab",
+                    "\"gastrointestinal tract, gut\"",
+                    "colonic digesta",
+                    "human gut metagenome",
+                    "dental biofilm",
+                    "human gut stool",
+                    "human oral cavity",
+                    "oral caviity",
+                    "plaque",
+                    "dental",
+                    "dental caries tooth",
+                    "subgingival plaque, gingival sulcus",
+                    "descending colon lumen",
+                    "supragingival and interproximal dental plaque",
+                    "esophagus brush",
+                    "swab throat",
+                    "oral cavity, infant (15 months age)",
+                    "oral swab from healthy volunteer",
+                    "oral cavity, infant (10 months of age)",
+                    "stomach biopsy",
+                    "4-6 years old child with healthy oral",
+                    "digestion track",
+                    "dental plaque biofilm of the third molar tooth of an individual diagnosed with pericoronitis",
+                    "human dental plaque",
+                    "oral cavity, infant (2 months age)",
+                    "oral cavity, infant (2 months of age)",
+                    "oral cavity, infant (13 months of age)",
+                    "oral cavity, infant (15 months of age)",
+                    "oral cavity, infant (12 months age)",
+                    "intestinal"
                 ],
                 "Organs and Tissues": [
                     "soft tissue",
@@ -1131,7 +1406,44 @@
                     "external lesion",
                     "internal organs",
                     "gonads male",
-                    "bone marrow"
+                    "bone marrow",
+                    "pericardium",
+                    "skin and soft tissue",
+                    "tissue l great toe",
+                    "cervix",
+                    "soft tissue wound",
+                    "skin tissue",
+                    "uterine cervix",
+                    "left mandible and iliac artery",
+                    "purulent discharge of mammary gland",
+                    "genital tract",
+                    "pleural exudate",
+                    "retropharyngeal lymph node abscess",
+                    "parotid abscess",
+                    "lymph node aspirate",
+                    "submandibular lymph node aspirate",
+                    "human heart",
+                    "slpeen",
+                    "tissies l great toe",
+                    "popliteal lymph node of steer",
+                    "parotid gland",
+                    "nonsterile tissues such as skin",
+                    "pleural liquid",
+                    "finger",
+                    "skin sample",
+                    "finger flexor tendon sheath",
+                    "pleural aspirate",
+                    "genital from 30-years-old female",
+                    "genital from 59-years-old female",
+                    "deep tissue",
+                    "autopsy tissues",
+                    "skin lesions",
+                    "skin, soft tissue and pneumonia",
+                    "skin, soft tissue, stss",
+                    "skin sore",
+                    "normal skin",
+                    "normal skin of the right arm",
+                    "tissue from patient"
                 ],
                 "Vagina Related": [
                     "healthy female urogenital tract",
@@ -1152,7 +1464,17 @@
                     "\"urogenital tract, vaginal\"",
                     "high vaginal swabs",
                     "vagina of healthy reproductive indian woman",
-                    "vaginal tract"
+                    "vaginal tract",
+                    "vagina of healthy women",
+                    "vaginal fluid",
+                    "vagina swab from a perinatal mother",
+                    "miscellaneous vagina",
+                    "vagiva",
+                    "vaginal swab post-delivery",
+                    "vaginal swab pre-delivery",
+                    "vaginal and perianal swab",
+                    "anal/vaginal swab",
+                    "vaginal cavity"
                 ]
             },
             "Inflammation and Infection": {
@@ -1216,7 +1538,68 @@
                     "corneal ulcer",
                     "leg ulcer",
                     "ear otitis",
-                    "foot pus"
+                    "foot pus",
+                    "milk from a bovine mastitis case",
+                    "abscess on a sugar glider",
+                    "wound right foot",
+                    "abscess abdominal",
+                    "abscess pelvic",
+                    "abscess l foot",
+                    "abscess axilla",
+                    "milk from cow with clinical mastitis",
+                    "wound sacral",
+                    "pus from dental abscess",
+                    "milk of dairy cows associated with an outbreak of mastitis",
+                    "abscess facial",
+                    "cows with mastitis at dairy farm",
+                    "udder",
+                    "cervical lymph node abscess",
+                    "submandibular lymph node abscess",
+                    "chest abscess",
+                    "abscess (vaccinated 22/12/04)",
+                    "lip abscess following vaccination on 11/01/2005",
+                    "mandibular lymphnode (abscess)",
+                    "mandibular lymphnode abscess",
+                    "abscess swab",
+                    "abscessed lymph node",
+                    "abcess",
+                    "lymph node abscess",
+                    "pus swabs",
+                    "wounds",
+                    "periapical abscess",
+                    "palatal abscess",
+                    "abdominal abscess",
+                    "brain abscess",
+                    "broncho-pulmonary abscess",
+                    "dental abscess",
+                    "wound r leg",
+                    "abcess in patient",
+                    "peristernal abscess",
+                    "impetigo lesion",
+                    "human infected wound",
+                    "patient with diabetic ulcer",
+                    "abscess (retropharyngeal)",
+                    "abscess (lymph node)",
+                    "wound (not sterile)",
+                    "abscess (skin)",
+                    "cerebral abscess pus",
+                    "surgical wound",
+                    "pus from 33-years-old female",
+                    "pus from 39-years-old male",
+                    "wound from 62-years-old male",
+                    "wound from 13-years-old male",
+                    "wound from 83-years-old female",
+                    "pus from 35-years-old male",
+                    "pus from 21-years-old male",
+                    "wound from 6-years-old male",
+                    "nonsterile wound",
+                    "abscess contents",
+                    "skin sore / abscess / burns / iv site",
+                    "foot wound",
+                    "mastoid,swab,wound",
+                    "tissue,wound",
+                    "milk from clinical mastitis-infected mammaries",
+                    "cerebral abscess"
                 ],
                 "Infection": [
                     "foreleg infected wound",
@@ -1224,7 +1607,21 @@
                     "wound infection",
                     "otitis",
                     "otitis externa",
-                    "ear infection"
+                    "ear infection",
+                    "infection",
+                    "infected foot",
+                    "bone abscess",
+                    "patient with pneumococcal infection",
+                    "clinical sample from eye infection",
+                    "soft tissue infection",
+                    "skin and soft tissue infection",
+                    "postoperative wound infection",
+                    "otitis media",
+                    "female with post partum endometritis",
+                    "meningitis, pneumonia",
+                    "skin, soft tissue infection",
+                    "skin infection",
+                    "human case of meningitis"
                 ]
             },
             "Respiratory System": {
@@ -1249,7 +1646,44 @@
                     "respiratory",
                     "bronchial washing",
                     "trach aspirate",
-                    "human nasopharynx"
+                    "human nasopharynx",
+                    "suction sputum",
+                    "nasal swab (vaccinated 12/01/05 and 10/02/05)",
+                    "nasopharygneal lavage",
+                    "lung tissue sample",
+                    "transedoscopic tracheal wash",
+                    "trachea aspirate",
+                    "nasopharynx from an adult patient",
+                    "sputum (induced)",
+                    "nasopharynx sample from healthy child at a day care",
+                    "bronchial aspirate",
+                    "sputum specimens",
+                    "tracheal",
+                    "sputum sample",
+                    "endotracheal tube tip",
+                    "swab from pharynx",
+                    "nasal swabs from hiv infected patient",
+                    "nasopharynx/liverpool",
+                    "oropharynx",
+                    "sputum culture",
+                    "nasophaynx",
+                    "deep respiratory",
+                    "nasopharynx from a pediatric patient",
+                    "pharynx, healthy adolescent",
+                    "low respiratory tract sample",
+                    "respiratory tract",
+                    "lower respiratory tract",
+                    "human pharynx",
+                    "oropharynx of 28-years-old male",
+                    "oropharynx from 51-years-old female",
+                    "oropharynx from 7-years-old female",
+                    "oropharynx from 24-years-old female",
+                    "oropharynx from 6-years-old male",
+                    "oropharynx from 3-years-old male",
+                    "upper respiratory tract",
+                    "pharygitis",
+                    "throat carriage",
+                    "lungs"
                 ]
             }
         }
@@ -1335,7 +1769,9 @@
                 "hefei",
                 "muschelkalk",
                 "jukgye, dongnam, cheonan, korea",
-                "stool material"
+                "stool material",
+                "sewage from environmental centre robert o. picard",
+                "urban"
             ],
             "Compost": [
                 "composting distilled shochu residue",
@@ -1347,7 +1783,8 @@
                 "processing plant",
                 "fermented olive; commercial processor",
                 "coke and gas plant treatment facilities",
-                "cotton plant"
+                "cotton plant",
+                "cheese processing environment"
             ],
             "Others": [
                 "apple dumpster",
@@ -1594,7 +2031,10 @@
                 "sediment in puget sound, wa",
                 ">63 micron",
                 "bottom water",
-                "ahpnd infected pond water"
+                "ahpnd infected pond water",
+                "water from rearing environment of oncorhynchus mykiss",
+                "water from parlor hose",
+                "water from tilapia pond"
             ],
             "Others": [
                 "environment",
@@ -1642,7 +2082,8 @@
                 "bamboo forest soil",
                 "environmental soil",
                 "heavy metal containmented soil",
-                "sediment"
+                "sediment",
+                "soil and grass"
             ]
         },
         "Human activities": {
@@ -1665,7 +2106,10 @@
                 "wooden cheese container",
                 "commercial farm",
                 "soil of paddy field",
-                "pasture"
+                "pasture",
+                "poultry slaughterhouse",
+                "farm kitchen",
+                "farm"
             ],
             "Built and Urban Environments": [
                 "cheonggukjang",
@@ -1692,7 +2136,11 @@
                 "indoor dust from athletic facility",
                 "indoor dust from athletic faciility hallway",
                 "international space station during mt-2",
-                "market"
+                "market",
+                "laboratory isolate",
+                "hospital isolate",
+                "hospital bedding",
+                "hospital shower hose biofilm"
             ],
             "Aerospace Related": [
                 "spacecraft hardware"
@@ -1744,7 +2192,8 @@
                 "gray water",
                 "sewer",
                 "hospital sewage",
-                "drain"
+                "drain",
+                "drainage jackson pratt"
             ],
             "Saltern": [
                 "crude salt from camalti saltern",
@@ -1868,7 +2317,8 @@
                 "shrimp culture pond",
                 "mud crab larvae aquaculture tank",
                 "aquaculture pipe deposits",
-                "eel tank water"
+                "eel tank water",
+                "commercial aquaculture farm"
             ]
         }
     },
@@ -1914,7 +2364,29 @@
                 "bouhezza (fresh cheese)",
                 "ovine cheese",
                 "raw milk cheese",
-                "queso fresco"
+                "queso fresco",
+                "cheese_core_stage_3_producer_2_cave_3",
+                "cheese production",
+                "cheddar cheese factory",
+                "artisanal cheese",
+                "cheese (brie)",
+                "cheese (domiati)",
+                "cheese whey",
+                "spanish traditional cheese casin",
+                "10 weeks old samso 45+ cheese",
+                "3-day-old traditional semihard cheese made from mixed cow (20%) and sheep (80%) milk",
+                "cheese product",
+                "traditional fermented bufallo milk, dadih",
+                "bryndza sheep milk cheese",
+                "traditional brie",
+                "goat cheese (pepper aroma)",
+                "cheese (tome de savoie)",
+                "cheese (majojero)",
+                "cheese with raw milk",
+                "cheese after gesm assay",
+                "artisanal chihuahua cheese",
+                "yogurt cheese",
+                "uncooked semi-hard french cheese"
             ],
             "Kefir": [
                 "tibet kefir",
@@ -1923,7 +2395,8 @@
                 "kefir grains",
                 "tibetan kefir",
                 "korean kefir",
-                "kefir grain"
+                "kefir grain",
+                "fermented milk (kefir)"
             ],
             "Milk": [
                 "milk",
@@ -1934,7 +2407,26 @@
                 "dromedary milk",
                 "fresh ewes milk",
                 "milk sample",
-                "thermized milk"
+                "thermized milk",
+                "milk_producer_2",
+                "raw sheep milk",
+                "goat milk",
+                "goat raw milk plardon",
+                "fresh raw milk",
+                "bovine milk",
+                "cow milk",
+                "goat raw milk rocamadour",
+                "camel milk",
+                "raw milk (from organic producers)",
+                "healthy cow milk",
+                "fresh milk",
+                "raw bovine milk",
+                "raw cow milk sample",
+                "raw goat milk",
+                "pasteurized 2% milk",
+                "heat treated 2% fat milk",
+                "2% fat milk",
+                "bovine bulk tank milk"
             ],
             "Other dairy": [
                 "dairy",
@@ -1959,7 +2451,15 @@
                 "milk powder",
                 "ice cream",
                 "casein fouling sample from a dairy factory",
-                "casein pipeline"
+                "casein pipeline",
+                "curd_producer_3",
+                "curd_producer_2",
+                "dairy fermentation",
+                "milk curd by product",
+                "diary product",
+                "milk curd",
+                "whey from htst balance tank",
+                "curd of morlacco cheese"
             ],
             "Other fermented milk": [
                 "fermented milk",
@@ -1988,7 +2488,12 @@
                 "yak fermented milk",
                 "fermented dairy sample",
                 "fermented goat milk",
-                "rayeb (fermented milk)"
+                "rayeb (fermented milk)",
+                "self-fermented smetana",
+                "dahi fermented milk product",
+                "milk fermentation",
+                "prostokvasha prepared from cow milk",
+                "ryazhenka"
             ],
             "Yogurt like": [
                 "yogurt",
@@ -2027,7 +2532,8 @@
                 "argentinean dry fermented sausages",
                 "artisanal dry-fermented salami",
                 "fermented meat sausage",
-                "traditional thai fermented pork sausage"
+                "traditional thai fermented pork sausage",
+                "fermented meat (nham)"
             ],
             "Seafood": [
                 "sliced vaccum-packed cold-smoked salmon",
@@ -2055,7 +2561,9 @@
                 "spoiled horse mackerel causing food poisoning",
                 "imported/domestic retail mussels",
                 "fresh seafood sold at markets and supermarkets located in bangkok, thailand",
-                "litopenaeus vannamei purchased at the supermarket"
+                "litopenaeus vannamei purchased at the supermarket",
+                "sashimi",
+                "whole live fish sold as snakehead-haruan; muscle"
             ],
             "Others meat & fish based food": [
                 "cooked ham",
@@ -2071,7 +2579,8 @@
                 "bulgogi",
                 "stewed chicken",
                 "plain boiled chicken",
-                "stewed meat"
+                "stewed meat",
+                "cold-stored modified atmosphere packaged broiler filet strips with the first signs of spoilage"
             ],
             "Sausage": [
                 "sausage",
@@ -2118,10 +2627,13 @@
                 "dietary supplement",
                 "lobster sauces",
                 "drinking water",
-                "cutting board"
+                "cutting board",
+                "food animal",
+                "food, in process"
             ],
             "Juices": [
-                "pasteurized fruit juice samples"
+                "pasteurized fruit juice samples",
+                "grapefruit juice"
             ],
             "Animal Feed": [
                 "shrimp feed",
@@ -2249,7 +2761,11 @@
                 "korean soybean paste",
                 "soy sauce mash",
                 "pickled vegetables",
-                "autochthonous strain isolated from spontaneously fermented croatian's white cabbage brassica oleracea var. capitata cultivar varazdinski"
+                "autochthonous strain isolated from spontaneously fermented croatian's white cabbage brassica oleracea var. capitata cultivar varazdinski",
+                "white kimchii",
+                "kimchi (fermented food)",
+                "mao tofu",
+                "cabbage kimchi inoculated with mrs-enriched fecal lab"
             ],
             "Honey Related": [
                 "honey from beehive",
@@ -2378,7 +2894,17 @@
                 "fermented foods",
                 "fermented orange",
                 "dried ossban",
-                "sour bean"
+                "sour bean",
+                "kaanga wai",
+                "fermented cabbage (food)",
+                "chinese traditional drink douzhi",
+                "japanese kaiwere shoots",
+                "fermented soyabean from sikkim",
+                "ethiopian ergo",
+                "fermented vegetable brassica juncea (pak-kad-dhong)",
+                "fermented batter of rice and faba beans",
+                "fermented pepper",
+                "fermented balsam pear"
             ],
             "Cereal Related": [
                 "rice",
@@ -2408,14 +2934,25 @@
                 "pea soup (8h 40 c degree)",
                 "binding flour",
                 "ready to eat mixed salad leaves (obtained from discount store)",
-                "packaged lettuce"
+                "packaged lettuce",
+                "frozen peas",
+                "sliced mixed vegetables",
+                "green peas",
+                "frass-berry",
+                "grocery store organic basil",
+                "grape must",
+                "salad mix",
+                "flat parsley",
+                "salad",
+                "tryptic soy broth"
             ],
             "Juice": [
                 "orange lemonade",
                 "apple juice from cider press",
                 "cane juice",
                 "grape juice",
-                "raspberry juice"
+                "raspberry juice",
+                "fermented pitaya juice"
             ],
             "Sourdough like": [
                 "sourdough",
@@ -3146,7 +3683,109 @@
                 "lake water from new mexico (usa)",
                 "environmental water",
                 "sea cage sediment",
-                "sea cage water"
+                "sea cage water",
+                "baby spinach",
+                "culture collection",
+                "milk from dairy cow with mastitis",
+                "aspirate l hip",
+                "pharyngeal wash sample",
+                "endotrachial aspirate from icu patient",
+                "alveolar lavage fluid",
+                "clinical specimen",
+                "identified as lab contaminant that had potent inhibitory activity against human pathogenic bacteria",
+                "madrid",
+                "barcelona",
+                "huesca",
+                "lleida",
+                "zamora",
+                "valencia",
+                "murcia",
+                "alava",
+                "navarra",
+                "organs",
+                "tsa (difco, france) plates containing 5% inactivated newborn bovine serum",
+                "tonsil from healthy pig in slaughterhouse",
+                "healthy pig slaughterhouse",
+                "csf or blood culture",
+                "la coruna",
+                "girona",
+                "brain tissue",
+                "china",
+                "respiratory throat swab",
+                "tonsil scrape",
+                "clinically diseased pig",
+                "head kidney of the diseased fish",
+                "bladder stones",
+                "lung from healthy pig in slaughterhouse",
+                "healthy pig in slaughterhouse",
+                "yogurt block",
+                "fermented milk product (curd)",
+                "dairy fan",
+                "traditional sour milk",
+                "traditional fermented dairy food yogurt block",
+                "traditional dairy",
+                "rubing",
+                "traditional yoghurt",
+                "fermented yak milk",
+                "spontaneus mutant of uc8547",
+                "industrial starter culture",
+                "dairy culture",
+                "home-made dairy foods(cheese)",
+                "industrial",
+                "chinese fermented milk",
+                "chinese traditional yogurt",
+                "orange leaves",
+                "commercial cultured foods",
+                "cultured food",
+                "aged cheddar",
+                "home-made bulgarian yoghurt",
+                "food starter culture 2",
+                "yoghurt",
+                "yogurt culture",
+                "artisanal yoghurt",
+                "cheese culture",
+                "lactic starter (for yoghurt making)",
+                "yoghurt (tarag)",
+                "yoghurt (ewe milk)",
+                "lactic starter (emmental)",
+                "artisanal lactic starter (gruyere de comte)",
+                "artisanal lactic starter (emmental cheese)",
+                "whey (emmental)",
+                "ewe cheese",
+                "cheese (ewe & caw milk)",
+                "raw milk (organic producer)",
+                "yoghurt culture",
+                "matsoni fermented milk product",
+                "traditional yogurt 9",
+                "traditional yogurt 8",
+                "traditional yogurt 12",
+                "traditional yogurt 13",
+                "traditional yogurt 11",
+                "traditional yogurt 7",
+                "traditional yogurt 5",
+                "traditional yogurt 6",
+                "traditional yogurt 3",
+                "traditional yogurt 4",
+                "traditional yogurt 2",
+                "traditional yogurt 1",
+                "milk from animal27",
+                "fermented milk products",
+                "traditional yogurt",
+                "milk cakes",
+                "lactic starter (for yogurt making)",
+                "artisanal lactic starter (for gruyere de comte cheese making)",
+                "artisanal lactic starter (for emmental cheese making)",
+                "milk after contact with traditional sicilian wooden vat (tina)",
+                "cow raw milk",
+                "yogurt (ewe milk)",
+                "yogurt (tarag)",
+                "commercial lactic starter",
+                "milk from an udder",
+                "dairy milk",
+                "cow udder",
+                "cow with clinical mastitis",
+                "mastitic milk",
+                "king khalid university hospital at king saud university"
             ]
         }
     },
@@ -3164,7 +3803,9 @@
                 "contaminated fungus plate",
                 "chitin hydrogel 40-100 m particle (artificial) late colonization",
                 "marine broth agar medium with sodium arsenite as selective compound",
-                "agarose-chitosan mix 40-100 m particle (artificial) mid colonization"
+                "agarose-chitosan mix 40-100 m particle (artificial) mid colonization",
+                "mixed strain dairy starter culture",
+                "bacterial culture"
             ],
             "Others": [
                 "throat culture",
@@ -3181,7 +3822,14 @@
                 "liquid culture",
                 "cucumber seedling substrate",
                 "surface seawater inoculated into a synthetic phycosphere",
-                "enrichment on artificial chitin hydrogel particle"
+                "enrichment on artificial chitin hydrogel particle",
+                "probat505 starter culture",
+                "tistrup starter culture",
+                "propagated starter culture used in cheese manufacturing",
+                "starter culture for dairy fermentation",
+                "starter culture for cheese making",
+                "hemoculture",
+                "laboratory culture"
             ]
         },
         "Fermentation Related": {
@@ -3227,7 +3875,73 @@
                 "bal",
                 "cockless",
                 "finland",
-                "canada"
+                "canada",
+                "novel",
+                "mckay",
+                "franche-comt",
+                "prairies normandes",
+                "ackermann",
+                "sandine",
+                "starter",
+                "ayran",
+                "mg1363 derivative",
+                "mik sample",
+                "mustard and cress",
+                "butter starter",
+                "dsmz collection",
+                "nizo collection",
+                "molgen collection",
+                "cork university",
+                "amasi",
+                "sufu",
+                "type strain of lact. xylosus from \"anchu\" mash",
+                "lactosrum rocamadour",
+                "c6 davidson",
+                "pois",
+                "lactic starter",
+                "diacetyl producing starter",
+                "parley",
+                "ambriss",
+                "chegen",
+                "powder",
+                "carriage",
+                "nares",
+                "fauces",
+                "sterile site",
+                "saudi arabia: malaz area, riyadh",
+                "sinus (carrier)",
+                "contains an artificial insertion of tn916 between pcra and seq_1022",
+                "equilis strepe vaccine msd",
+                "anaerobic digestion of organic wastes under variable temperature conditions and feedstocks",
+                "metagenome",
+                "l. calcarifer",
+                "a diarrheal child",
+                "draining-matting conveyor",
+                "root caries",
+                "new guinea indigenes",
+                "root canal",
+                "small bowel brush",
+                "no heat treatment",
+                "streptococcus parauberis db-wt",
+                "sinus",
+                "obtained by transformation of the laboratory strain streptococcus pneumoniae r6",
+                "laboratory derivative",
+                "united kingdom",
+                "hydrothorax",
+                "nps",
+                "infected nail well",
+                "normally sterile site",
+                "invasive",
+                "sinus aspirate",
+                "scarlet fever",
+                "apsgn",
+                "ziyang city",
+                "phayao, thailand",
+                "systemic",
+                "valladolid",
+                "huelva",
+                "caceres",
+                "soria"
             ]
         },
         "Strains": {
@@ -3270,12 +3984,19 @@
                 "in vitro phage -resistant clone",
                 "derived from o395r",
                 "this is atcc 33843",
-                "laboratory sample"
+                "laboratory sample",
+                "4% isobutanol tolerant sttrain was obtained after evolution experiments performed on wild type nz9000 l. lactis strain.",
+                "laboratory mutagenesis",
+                "oie reference laboratory for swine streptococcosis"
             ]
         },
         "Chemicals": {
             "Drugs": [
                 "uncut heroin sample"
+            ],
+            "Others": [
+                "zoetis vaccine",
+                "commercial preparation"
             ]
         }
     },
@@ -3328,10 +4049,14 @@
                 "lemon samples",
                 "fermented orange",
                 "paper mulberry",
-                "grape"
+                "grape",
+                "fruit"
             ],
             "Fruit Reproductive Structures": [
-                "anthers of luffa"
+                "anthers of luffa",
+                "beetroot",
+                "zucchini",
+                "yellow squash"
             ],
             "Root": [
                 "banana plant rhizosphere",
@@ -3362,7 +4087,16 @@
                 "lettuce",
                 "tomato",
                 "carrots",
-                "potato"
+                "potato",
+                "sprouts",
+                "alfalfa and radish sprouts",
+                "fancy lettuce",
+                "beans",
+                "bean sprouts",
+                "dragon bean",
+                "brussel sprouts loose",
+                "assorted lettuce (organic lettuce)",
+                "soy bean"
             ]
         },
         "Grass": {
@@ -3370,7 +4104,9 @@
                 "pasture gramineae",
                 "subarctic timothy grass",
                 "grass samples",
-                "hay"
+                "hay",
+                "fresh herb",
+                "napier grass"
             ]
         },
         "Other Agricultural Plants": {
@@ -3379,7 +4115,11 @@
                 "potato scab",
                 "alfalfa sprout",
                 "earthnut (stemona tuberosa)",
-                "flax plant bast fibre"
+                "flax plant bast fibre",
+                "alfalfa sprouts",
+                "stem",
+                "phyllosphere epiphyte",
+                "mint"
             ],
             "Leaves": [
                 "lucerne leaf",
@@ -3447,7 +4187,9 @@
                 "crotalaria pallida",
                 "pepper plant",
                 "almond drupe",
-                "endosperm"
+                "endosperm",
+                "mesocarp of euterpe oleracea",
+                "green bean"
             ],
             "Plant Reproductive Structures": [
                 "pollen (bee bread) from beehive",
@@ -3458,7 +4200,9 @@
                 "seed",
                 "seeds",
                 "flowers",
-                "flowers from a wild plant"
+                "flowers from a wild plant",
+                "chinese radish seeds",
+                "dry seeds"
             ],
             "Root": [
                 "roots",
