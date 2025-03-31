@@ -20,8 +20,6 @@ if __name__ == "__main__":
 
     requesting = []
 
-    # pangenome_analyses = {"Streptomyces_mirabilis": "Streptomyces mirabilis"}
-
     for pangenome_analysis in pangenome_analyses.keys():
         logger.info(f" - Processing {pangenome_analysis}")
 
