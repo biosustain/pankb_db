@@ -23,8 +23,7 @@ if __name__ == "__main__":
             )
 
     logger.info("Creating the indexes on the collection...")
-    collection.create_index(['pangenome_analysis', 'gene'])
-    collection.create_index(['pangenome_analysis', 'genome_id'])
+    collection.create_index(['pangenome_analysis', 'genome_id', 'locus_tag', 'gene'])
     logger.info("The indexes have been successfully created.")
 
     requesting = []
@@ -40,7 +39,7 @@ if __name__ == "__main__":
                 for line in r.iter_lines():
                     gene_dict = json.loads(line)
 
-                    filter_query = {"pangenome_analysis": pangenome_analysis, "gene": gene_dict["gene"]}
+                    filter_query = {"pangenome_analysis": pangenome_analysis, "genome_id": gene_dict["genome_id"], "locus_tag": gene_dict["locus_tag"]}
                     update_query = {"$set": gene_dict}
 
                     requesting.append(UpdateOne(filter_query, update_query, upsert=True))
