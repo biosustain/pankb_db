@@ -2,54 +2,68 @@ from connections import *
 from pymongo import UpdateOne
 import requests
 import json
+from config_nova import gene_batch_size
 
 if __name__ == "__main__":
     db_conn = DBConnection()
     logger = TimedLogger("phylons")
 
-    # Obtain the db collection object: ----
-    collection = db_conn.db["pankb_phylons"]
+    collections = {
+        "gene": db_conn.db["pankb_gene_phylons"],
+        "genome": db_conn.db["pankb_genome_phylons"]
+    }
 
     if config.drop_collection:
-        # Drop the collection if it exists: ----
-        collection.drop() 
+        logger.info("Dropping collections")
+        for collection in collections.values():
+            collection.drop()
+        logger.info("Collections have been successfully dropped.")
 
-    logger.info("Creating the indexes on the collection...")
-    collection.create_index(['pangenome_analysis'], name="lookup_index")
+    logger.info("Creating the indexes on the collections")
+    collections["genome"].create_index('genome_id')
+    collections["genome"].create_index('pangenome_analysis')
+    collections["genome"].create_index(['pangenome_analysis', 'genome_id'])
+
+    collections["gene"].create_index('gene')
+    collections["gene"].create_index('pangenome_analysis')
+    collections["gene"].create_index(['pangenome_analysis', 'gene'])
+
     logger.info("The indexes have been successfully created.")
 
     requesting = []
-
     for pangenome_analysis in pangenome_analyses.keys():
         logger.info(f" - Processing {pangenome_analysis}")
 
-        genome_to_phylons = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/phylons/genome_to_phylons.json').json()
-        genome_to_phylon_weights = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/phylons/genome_to_phylon_weights.json').json()
-        phylon_to_genomes = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/phylons/phylon_to_genomes.json').json()
-        phylon_to_genome_weights = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/phylons/phylon_to_genome_weights.json').json()
-        gene_to_phylons = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/phylons/gene_to_phylons.json').json()
-        phylon_to_gene_weights = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/phylons/phylon_to_gene_weights.json').json()
-        gene_to_phylon_weights = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/phylons/gene_to_phylon_weights.json').json()
-        phylon_to_genes = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/phylons/phylon_to_genes.json').json()
+        phylons_data = requests.get(f'{BlobConnection.base_url}{BlobConnection.web_data_path}species/{pangenome_analysis}/phylons.json').json()
 
-        phylons_dict = {
-            "pangenome_analysis": pangenome_analysis,
-            "genome_phylons": genome_to_phylons,
-            "genome_phylon_weights": genome_to_phylon_weights,
-            "phylon_genomes": phylon_to_genomes,
-            "phylon_genome_weights": phylon_to_genome_weights,
-            "gene_phylons": gene_to_phylons,
-            "gene_phylon_weights": gene_to_phylon_weights,
-            "phylon_genes": phylon_to_genes,
-            "phylon_gene_weights": phylon_to_gene_weights
-        }
+        for collection_type in ("gene", "genome"):
+            id_name = "gene" if collection_type == "gene" else "genome_id"
 
-        filter_query = {"pangenome_analysis": pangenome_analysis}
-        update_query = {"$set": phylons_dict}
+            for id, pylons in phylons_data[f"{collection_type}_phylons"].items():
+                phylon_weights = phylons_data[f"{collection_type}_phylon_weights"][id]
 
-        requesting.append(UpdateOne(filter_query, update_query, upsert=True))
+                filter_query = {"pangenome_analysis": pangenome_analysis, id_name: id}
+                update_query = {"$set":
+                    {
+                        "pangenome_analysis": pangenome_analysis,
+                        id_name: id,
+                        "phylons": pylons,
+                        "phylon_weights": phylon_weights
+                    }
+                }
 
-    logger.info("--- DB Insertion ---")
-    result = collection.bulk_write(requesting, ordered=True)
+                requesting.append(UpdateOne(filter_query, update_query, upsert=True))
+
+                if len(requesting) >= gene_batch_size:
+                    logger.info("--- DB Insertion ---")
+                    collections[collection_type].bulk_write(requesting, ordered=True)
+                    logger.info(f"Upserted {len(requesting)} documents")
+                    requesting = []
+
+            if requesting:
+                logger.info("--- DB Insertion ---")
+                collections[collection_type].bulk_write(requesting, ordered=True)
+                logger.info(f"Upserted {len(requesting)} documents")
+                requesting = []
+
     logger.log_execution_time()
-    logger.info("Documents upserted: %s" % (len(requesting)))
