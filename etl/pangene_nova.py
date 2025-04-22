@@ -15,6 +15,7 @@ if __name__ == "__main__":
         collection.drop()
 
     logger.info("Creating the indexes on the collection...")
+    collection.create_index(["pangenome_analysis"])
     collection.create_index(['pangenome_analysis', 'gene'], name="lookup_index")
     collection.create_index(['kegg_pathway', 'pangenome_analysis', 'gene'], name="pathway_index")
     logger.info("The indexes have been successfully created.")

@@ -288,6 +288,7 @@ Vibrio_vulnificus_B
 Weissella_cibaria
 Weissella_confusa
 """
+
 pangenome_analyses = [s.strip() for s in pangenome_analyses.strip().split('\n')]
 
 # A local folder, where all the logs are to be stored: ----
