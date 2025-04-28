@@ -7,9 +7,11 @@ The repo contains :
 ## Authors
 
 Liubov Pashkova, liupa@dtu.dk
+
 Pascal A. Pieters, paspie@biosustain.dtu.dk
+
 Daniel C. Romero Yianni, danyia@dtu.dk
- 
+
 ## Set up the common git repository
 Create the necessary directories if they do not exist:
 ```
