@@ -54,18 +54,18 @@ pip3 install -r requirements.txt
 
 ### 1.2 Copy BGCFlow results to Azure
 
-After running the [PanKB fork of BGCFlow](https://github.com/pascalaldo/bgcflow) for your species of interest, copy its data to the relevant Azure blob (you can check which storage account is being used in the `BLOB_STORAGE_CONN_STRING` varaible in `.env`, which contains the storage account name you can find in Azure: `https://<storage_account_name>.blob.core.windows.net`).
-
-The blob and path can be found in the `BlobConnection` class in `connections.py`. The specific files required can subsequently be found in each of the ETL scripts.
+After running the [PanKB fork of BGCFlow](https://github.com/pascalaldo/bgcflow) for your species of interest, copy its data to the relevant Azure blob (when using an existing setup, you can check which storage account is being used in the `BLOB_STORAGE_CONN_STRING` varaible in `.env`, which contains the storage account name you can find in Azure: `https://<storage_account_name>.blob.core.windows.net`).
 
 Generally, you simply need to copy the the species directory from `<bgcflow_repo>/data/processed/species/pankb/web_data/species/<species_name>` to `<blob_url>/data/PanKB/web_data_v2/species/<species_name>` using `azcopy` (remember to always test first with `--dry-run` and use `--overwrite=false` unless you specifically need to update existing files).
+
+If you need more information about which specific files are needed, the blob and path can be found in the `BlobConnection` class in `connections.py`. The specific files required can subsequently be found in each of the ETL scripts.
 
 You can use a script like this as a template (note that it requires you set the `SAS` environment variable to a [SAS token](https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/how-to-guides/create-sas-tokens) with read/write permissions on the blob):
 ```
 #!/usr/bin/bash
 
 PANKB_WEB_DATA="https://<storage_account_name>.blob.core.windows.net/data/PanKB/web_data_v2/"
-LOCAL_WEB_DATA="<bgcflow_path>/data/data/processed/species/pankb/web_data/species"
+LOCAL_WEB_DATA="<bgcflow_path>/data/processed/species/pankb/web_data/species"
 
 for species in $(ls "${LOCAL_WEB_DATA}/"); do
     echo "--- $species ---"
