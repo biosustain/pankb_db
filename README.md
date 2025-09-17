@@ -64,7 +64,7 @@ You can use a script like this as a template (note that it requires you set the 
 ```
 #!/usr/bin/bash
 
-PANKB_WEB_DATA="https://<storage_account_name>.blob.core.windows.net/data/PanKB/web_data_v2/"
+PANKB_WEB_DATA="https://<storage_account_name>.blob.core.windows.net/data/PanKB/web_data_v2"
 LOCAL_WEB_DATA="<bgcflow_path>/data/processed/species/pankb/web_data/species"
 
 for species in $(ls "${LOCAL_WEB_DATA}/"); do
