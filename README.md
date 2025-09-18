@@ -1,7 +1,7 @@
 # The PanKB website DBs: ETL & Self-deployed MongoDB instance 
 
 The repo contains :
-- ETL scripts used to populate the PanKB website DEV and PROD databases;
+- ETL scripts used to populate the PanKB website DEV, PREPROD and PROD databases;
 - scripts used to set up a dockerized self-deployed standalone MongoDB instance for the development purposes.
 
 ## Authors
@@ -54,7 +54,7 @@ pip3 install -r requirements.txt
 
 ### 1.2 Copy BGCFlow results to Azure
 
-After running the [PanKB fork of BGCFlow](https://github.com/pascalaldo/bgcflow) for your species of interest, copy its data to the relevant Azure blob (when using an existing setup, you can check which storage account is being used in the `BLOB_STORAGE_CONN_STRING` varaible in `.env`, which contains the storage account name you can find in Azure: `https://<storage_account_name>.blob.core.windows.net`).
+After running the [PanKB fork of BGCFlow](https://github.com/pascalaldo/bgcflow) for your species of interest, copy its data to the relevant Azure blob (when using an existing setup, you can check which storage account is being used in the `BLOB_STORAGE_CONN_STRING` varaible in `.env`, which contains the storage account name you can find in Azure: `https://<storage_account_name>.blob.core.windows.net`). Currently, we are using this [pankb storage account](https://portal.azure.com/#@dtudk.onmicrosoft.com/resource/subscriptions/aee8556f-d2fd-4efd-a6bd-f341a90fa76e/resourceGroups/rg-recon/providers/Microsoft.Storage/storageAccounts/pankb/overview).
 
 Generally, you simply need to copy the the species directory from `<bgcflow_repo>/data/processed/species/pankb/web_data/species/<species_name>` to `<blob_url>/data/PanKB/web_data_v2/species/<species_name>` using `azcopy` (remember to always test first with `--dry-run` and use `--overwrite=false` unless you specifically need to update existing files).
 
@@ -63,6 +63,8 @@ If you need more information about which specific files are needed, the blob and
 You can use a script like this as a template (note that it requires you set the `SAS` environment variable to a [SAS token](https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/how-to-guides/create-sas-tokens) with read/write permissions on the blob):
 ```
 #!/usr/bin/bash
+
+source .env
 
 PANKB_WEB_DATA="https://<storage_account_name>.blob.core.windows.net/data/PanKB/web_data_v2"
 LOCAL_WEB_DATA="<bgcflow_path>/data/processed/species/pankb/web_data/species"
@@ -109,11 +111,10 @@ BLOB_STORAGE_CONN_STRING = '<copy the Azure Blob Storage connection string from 
 ```
 Then, edit the included `etl/config.py` file setting the following parameters:
 - the database type (self-deployed or cloud-based MongoDB instance);
-- species for which pangenome data should be inserted or modified (all species or only chosen ones);
-- a local folder on your machine where the etl scripts' logs will be saved (the folder should be created beforehand);
-- whether the logs produced by the individual ETL scripts should be uploaded to the Azure Blob storage or not.
+- species for which pangenome data should be inserted or updated (all species or only chosen ones);
+- a local folder on your machine where the etl scripts' logs will be saved (the folder should be created beforehand).
 
-Finally, the ETL scripts must be executed (with e.g. `python3 <script_name.py>`) in the following order:
+Finally, the ETL scripts must be executed (with e.g. `python3 <script_name.py>`) with pankb_stats_nova.py running at last:
 1. `organism_nova.py`
 2. `pangene_nova.py`
 3. `genome_nova.py`
@@ -135,7 +136,9 @@ docker system prune
 sudo systemctl restart docker
 ```
 
-Another good practice is to prepend the commands with `nice -n 19` when running them on the prod server (sets lowest possible resource usage priority and reduces possible slowdowns of the web server). Also, on the prod server it is a good idea to keep track of RAM usage as you run these scripts and kill them if they start hoarding too much memory.
+Another good practice is to prepend the commands with `nice -n 19` when running them on the prod server (sets lowest possible resource usage priority and reduces possible slowdowns of the web server). Also, on the prod server it is a good idea to keep track of RAM usage as you run these scripts and kill them if they start hoarding too much memory.   
+       
+For Pankb, we are currently using the self-deployed MongoDB in respective virtual machines.  
 
 ## 2. Self-deployed MongoDB
 
