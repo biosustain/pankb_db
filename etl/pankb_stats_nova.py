@@ -1,21 +1,27 @@
 from connections import *
+import country_converter as coco
 
 from datetime import datetime
 from pathlib import Path
 import json
+import logging
 
 if __name__ == "__main__":
     db_conn = DBConnection()
     logger = TimedLogger("pankb_stats")
+    coco_logger = logging.getLogger('country_converter')
+    coco_logger.setLevel(logging.CRITICAL) 
 
     # Obtain the db collection object: ----
     collection = db_conn.db["pankb_stats"]
     organism_collection = db_conn.db["pankb_organisms"]
-
+    isolation_collection = db_conn.db["pankb_isolation_info"]
+    
     pankb_dimensions = {"Mutations": 0, "Genes": 0, "Alleleomes": 0, "Genomes": 0, "Species pangenomes": 0}
     species_genome_gene = {}
     organism_genome_count = {}
     organism_gene_count = {}
+    country_strain_count = {}
 
     for organism_entry in organism_collection.find({}):
         pangenome_analysis = organism_entry["pangenome_analysis"]
@@ -55,6 +61,17 @@ if __name__ == "__main__":
     #     json.dump(organism_genome_count, f)
     # with open(out_path / "organism_gene_count.json", "w") as f:
     #     json.dump(organism_gene_count, f)
+    
+    cc = coco.CountryConverter()
+    for isolation_entry in isolation_collection.find({}):
+        country = isolation_entry["country"]
+        country_code = cc.convert(country, to="ISO2", not_found="missing").lower()
+
+        if country_code not in country_strain_count:
+            country_strain_count[country_code] = 0
+        country_strain_count[country_code] += 1
+
+    country_strain_count = dict(sorted(country_strain_count.items(), key=lambda x: x[1], reverse=True))
 
     with open(out_path / "treemap_data.json", "r") as f:
         treemap_data = json.load(f)
@@ -65,7 +82,8 @@ if __name__ == "__main__":
         "species_genome_gene": json.dumps(species_genome_gene),
         "organism_genome_count": json.dumps(organism_genome_count),
         "organism_gene_count": json.dumps(organism_gene_count),
-        "treemap": json.dumps(treemap_data)
+        "treemap": json.dumps(treemap_data),
+        "country_strain_count": json.dumps(country_strain_count) 
     }
 
     # Insert rows into the MongoDB and print some stats: ----
