@@ -11,6 +11,7 @@ if __name__ == "__main__":
     # Obtain the db collection object: ----
     collection = db_conn.db["pankb_stats"]
     organism_collection = db_conn.db["pankb_organisms"]
+    isolation_collection = db_conn.db["pankb_isolation_info"]
 
     pankb_dimensions = {"Mutations": 0, "Genes": 0, "Alleleomes": 0, "Genomes": 0, "Species pangenomes": 0}
     species_genome_gene = {}
@@ -59,13 +60,22 @@ if __name__ == "__main__":
     with open(out_path / "treemap_data.json", "r") as f:
         treemap_data = json.load(f)
 
+    country_strain_count = {}
+    for isolation_entry in isolation_collection.find({}, {"country_iso2": 1}):
+        country_iso2 = isolation_entry["country_iso2"]
+        if country_iso2 not in country_strain_count:
+            country_strain_count[country_iso2] = 0
+        country_strain_count[country_iso2] += 1
+    country_strain_count = dict(sorted(country_strain_count.items(), key=lambda x: x[1], reverse=True))
+
     data = {
         "date": datetime.now(),
         "pankb_dimensions": json.dumps(pankb_dimensions),
         "species_genome_gene": json.dumps(species_genome_gene),
         "organism_genome_count": json.dumps(organism_genome_count),
         "organism_gene_count": json.dumps(organism_gene_count),
-        "treemap": json.dumps(treemap_data)
+        "treemap": json.dumps(treemap_data),
+        "country_strain_count": json.dumps(country_strain_count)
     }
 
     # Insert rows into the MongoDB and print some stats: ----
