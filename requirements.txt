@@ -5,3 +5,4 @@ pymongo==4.6.2
 python-dotenv==1.0.1
 Requests==2.32.3
 thefuzz==0.22.1
+country_converter==1.3.2

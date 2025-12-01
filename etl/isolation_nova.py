@@ -7,6 +7,11 @@ import requests
 from pymongo import UpdateOne
 import isolation_category_helpers as iso
 import re
+import logging
+import country_converter as coco
+
+logging.getLogger('country_converter').setLevel(logging.CRITICAL)
+cc = coco.CountryConverter()
 
 def check_perfect_match(country_entry, countries_dict):
     """
@@ -77,12 +82,17 @@ if __name__ == "__main__":
                 isolation_dict = json.loads(line)
 
                 # Country standardization
-                if (perfect_match := check_perfect_match(str(isolation_dict.get("country", "?")), COUNTRIES)):
+                raw_country = str(isolation_dict.get("country"))
+                if (perfect_match := check_perfect_match(raw_country, COUNTRIES)):
                     isolation_dict["country"] = perfect_match
-                elif (contains_match := check_contains_match(str(isolation_dict.get("country", "?")), COUNTRIES)):
+                elif (contains_match := check_contains_match(raw_country, COUNTRIES)):
                     isolation_dict["country"] = contains_match
                 else:
-                    logger.warning(f"COUNTRY '{isolation_dict['country']}' not found in standardization dict.")
+                    logger.warning(f"COUNTRY '{raw_country}' not found in standardization dict.")
+
+                cleaned_country = isolation_dict["country"]
+                country_iso2 = cc.convert(cleaned_country, to="ISO2", not_found="missing")
+                isolation_dict["country_iso2"] = country_iso2.lower()
                 
                 # Isolation source categorization
                 iso_source = str(isolation_dict.get("isolation_source", "Missing")).lower()
