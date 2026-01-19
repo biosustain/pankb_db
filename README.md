@@ -54,7 +54,7 @@ pip3 install -r requirements.txt
 
 ### 1.2 Copy BGCFlow results to Azure
 
-After running the [PanKB fork of BGCFlow](https://github.com/pascalaldo/bgcflow) for your species of interest, copy its data to the relevant Azure blob (when using an existing setup, you can check which storage account is being used in the `BLOB_STORAGE_CONN_STRING` varaible in `.env`, which contains the storage account name you can find in Azure: `https://<storage_account_name>.blob.core.windows.net`). Currently, we are using this [pankb storage account](https://portal.azure.com/#@dtudk.onmicrosoft.com/resource/subscriptions/aee8556f-d2fd-4efd-a6bd-f341a90fa76e/resourceGroups/rg-recon/providers/Microsoft.Storage/storageAccounts/pankb/overview).
+After running the [PanKB fork of BGCFlow](https://github.com/pascalaldo/bgcflow) for your species of interest, copy its data to the relevant Azure blob (when using an existing setup, you can check which storage account is being used in the `BLOB_STORAGE_CONN_STRING` varaible in `.env`, which contains the storage account name you can find in Azure: `https://<storage_account_name>.blob.core.windows.net`). 
 
 Generally, you simply need to copy the the species directory from `<bgcflow_repo>/data/processed/species/pankb/web_data/species/<species_name>` to `<blob_url>/data/PanKB/web_data_v2/species/<species_name>` using `azcopy` (remember to always test first with `--dry-run` and use `--overwrite=false` unless you specifically need to update existing files).
 
