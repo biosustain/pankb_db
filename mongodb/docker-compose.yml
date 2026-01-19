@@ -1,7 +1,7 @@
 networks:
   pankb-net:
     name: pankb-net
-    external: false
+    external: true
 
 services:
   mongodb:
